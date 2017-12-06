@@ -7,23 +7,25 @@
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
               aria-label="Toggle navigation"
-              @click="toggleNav = !toggleNav" >
+              @click="toggleNav" >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" :class="{ show: toggleNav }" >
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Categories</a>
-          </li>
-        </ul>
-      </div>
+      <transition name="slide-fade">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="isShowing"  >
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Categories</a>
+            </li>
+          </ul>
+        </div>
+      </transition>
     </div>
   </nav>
 </template>
@@ -32,11 +34,15 @@
 export default {
   data () {
     return {
-      toggleNav: false
+
+      isShowing: false
     }
   },
   methods: {
-
+    toggleNav () {
+      console.log(this.isShowing)
+      this.isShowing = !this.isShowing
+    }
   }
 }
 </script>
@@ -58,5 +64,63 @@ nav {
       color: $hoverLinkColor;
     }
   }
+
+
 }
+
+//transition
+.slide-fade-enter-active {
+  opacity: 0;
+  display: none;
+}
+.slide-fade-enter-active {
+  display: block;
+  transition: opacity .300s ease forwards;
+}
+.slide-fade-leave-active {
+  transition: opacity .300s ease forwards;
+  opacity: 0;
+  display: none;
+}
+
+//animation
+// .slide-fade-enter {
+//   opacity: 0;
+//   /*transform: translateY(20px);*/
+// }
+//
+// .slide-fade-enter-active {
+//   animation: slide-in 1s ease-out forwards;
+//   transition: opacity .5s;
+//   display: block;
+// }
+//
+// .slide-fade-leave-active {
+//   animation: slide-out 1s ease-out forwards;
+//   transition: opacity 1s;
+//   opacity: 0;
+//   position: absolute;
+// }
+//
+// .slide-fade-move {
+//   transition: transform 1s;
+// }
+//
+// @keyframes slide-in {
+//   from {
+//       transform: translateY(20px);
+//   }
+//   to {
+//       transform: translateY(0);
+//   }
+// }
+//
+// @keyframes slide-out {
+//   from {
+//       transform: translateY(0);
+//   }
+//   to {
+//       transform: translateY(20px);
+//   }
+// }
 </style>
