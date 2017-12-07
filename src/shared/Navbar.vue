@@ -12,7 +12,7 @@
       </button>
 
       <transition name="slide-fade">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="isShowing"  >
+        <div class="navbar-collapse" id="navbarSupportedContent" v-if="isShowing">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="#">Register</a>
@@ -34,7 +34,6 @@
 export default {
   data () {
     return {
-
       isShowing: false
     }
   },
@@ -65,62 +64,27 @@ nav {
     }
   }
 
+  .collapsed {
+    @media (min-width: 992px) {
+      .navbar-collapse {
+        display: block !important;
+      }
+    }
+  }
 
 }
 
 //transition
-.slide-fade-enter-active {
+.slide-fade-enter {
   opacity: 0;
-  display: none;
 }
 .slide-fade-enter-active {
-  display: block;
-  transition: opacity .300s ease forwards;
+  transition: all .8s ease;
 }
 .slide-fade-leave-active {
-  transition: opacity .300s ease forwards;
+  transition: all .8s ease;
   opacity: 0;
-  display: none;
 }
 
-//animation
-// .slide-fade-enter {
-//   opacity: 0;
-//   /*transform: translateY(20px);*/
-// }
-//
-// .slide-fade-enter-active {
-//   animation: slide-in 1s ease-out forwards;
-//   transition: opacity .5s;
-//   display: block;
-// }
-//
-// .slide-fade-leave-active {
-//   animation: slide-out 1s ease-out forwards;
-//   transition: opacity 1s;
-//   opacity: 0;
-//   position: absolute;
-// }
-//
-// .slide-fade-move {
-//   transition: transform 1s;
-// }
-//
-// @keyframes slide-in {
-//   from {
-//       transform: translateY(20px);
-//   }
-//   to {
-//       transform: translateY(0);
-//   }
-// }
-//
-// @keyframes slide-out {
-//   from {
-//       transform: translateY(0);
-//   }
-//   to {
-//       transform: translateY(20px);
-//   }
-// }
+
 </style>
