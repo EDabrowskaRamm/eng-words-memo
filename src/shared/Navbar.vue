@@ -1,27 +1,27 @@
 <template lang="html">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="#">App</a>
+      <router-link class="navbar-brand" tag="a" to="/">App</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
               aria-label="Toggle navigation"
-              @click="toggleNav" >
+              @click="toggleNav = !toggleNav" >
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <transition name="slide-fade">
-        <div class="navbar-collapse" id="navbarSupportedContent" v-if="isShowing">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" :class="{ show: toggleNav }">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
+              <router-link class="nav-link" tag="li" to="/register" active-class="active"><a>Register</a></router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <router-link class="nav-link" tag="li" to="/login" active-class="active"><a>Login</a></router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Categories</a>
+              <router-link class="nav-link" tag="li" to="/categories" active-class="active"><a>Categories</a></router-link>
             </li>
           </ul>
         </div>
@@ -34,14 +34,11 @@
 export default {
   data () {
     return {
-      isShowing: false
+      toggleNav: false
     }
   },
   methods: {
-    toggleNav () {
-      console.log(this.isShowing)
-      this.isShowing = !this.isShowing
-    }
+
   }
 }
 </script>
@@ -64,27 +61,19 @@ nav {
     }
   }
 
-  .collapsed {
-    @media (min-width: 992px) {
-      .navbar-collapse {
-        display: block !important;
-      }
-    }
-  }
-
 }
 
 //transition
-.slide-fade-enter {
-  opacity: 0;
-}
-.slide-fade-enter-active {
-  transition: all .8s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s ease;
-  opacity: 0;
-}
+// .slide-fade-enter {
+//   opacity: 0;
+// }
+// .slide-fade-enter-active {
+//   transition: all .8s ease;
+// }
+// .slide-fade-leave-active {
+//   transition: all .8s ease;
+//   opacity: 0;
+// }
 
 
 </style>
