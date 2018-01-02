@@ -1,29 +1,15 @@
 <template lang="html">
   <div class="container">
-    <form>
-      <h3>Log in</h3>
-      <div class="form-group">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <NameInput/>
-      </div>
-      <div class="form-group">
-        <i class="fa fa-lock" aria-hidden="true"></i>
-        <PassInput/>
-      </div>
-    </form>
+    <Form/>
   </div>
 </template>
 
 <script>
-import NameInput from '../../shared/NameInput'
-import PassInput from '../../shared/PassInput'
-// import EmailInput from '../../shared/EmailInput'
+import Form from '../../shared/Form'
 
 export default {
   components: {
-    NameInput,
-    PassInput
-    // EmailInput
+    Form
   }
 }
 </script>

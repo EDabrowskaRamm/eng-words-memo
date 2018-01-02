@@ -1,9 +1,24 @@
 <template lang="html">
-  <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Email">
+  <input class="form-control" aria-describedby="emailHelp" placeholder="Email"
+        type="email" id="email" v-model="email" @input="$v.email.$touch()"
+  >
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
+
 export default {
+  data () {
+    return {
+      email: ''
+    }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    }
+  }
 }
 </script>
 
