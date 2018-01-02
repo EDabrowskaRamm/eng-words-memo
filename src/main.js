@@ -19,6 +19,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
+  // template: '<App/>',
+  // components: { App }
+  render: h => h(App)
 })

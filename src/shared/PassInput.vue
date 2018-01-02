@@ -1,5 +1,5 @@
 <template lang="html">
-  <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" placeholder="User name">
+  <input type="password" class="form-control" id="passInput" aria-describedby="passwordInput" placeholder="Password">
 </template>
 
 <script>
