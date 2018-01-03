@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-    <form @submit.prevent="onSubmit" >
+    <form>
       <h3>Register</h3>
       <div class="form-group" :class="{invalid: $v.userName.$error}">
         <i class="fa fa-user" aria-hidden="true"></i>
@@ -29,7 +29,8 @@
           Password should have at least {{ $v.password.$params.minLength.min }} characters
         </p>
       </div>
-      <button type="button" name="button" class="btn btn-outline-success">
+      <button type="submit" name="button" class="btn btn-outline-success"
+              :disabled="$v.$invalid" @click.prevent="addUser">
         Create account
       </button>
     </form>
@@ -67,6 +68,18 @@
       password: {
         required,
         minLength: minLength(6)
+      }
+    },
+    methods: {
+      addUser () {
+        const newUser = {
+          name: this.userName,
+          email: this.email,
+          password: this.password
+        }
+
+        console.log(newUser)
+        // this.$http.put('data.json', registerData)
       }
     }
   }

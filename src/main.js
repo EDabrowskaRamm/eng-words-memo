@@ -14,6 +14,8 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
 
+// Vue.http.options.root = 'https://eng-words-memo.firebaseio.com/'
+
 const router = new VueRouter({
   routes,
   mode: 'history'
