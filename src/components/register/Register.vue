@@ -42,6 +42,19 @@
   import PassInput from '../../shared/PassInput'
   import EmailInput from '../../shared/EmailInput'
   import { required, email, minLength } from 'vuelidate/lib/validators'
+  import Firebase from 'firebase'
+
+  let config = {
+    apiKey: 'AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ',
+    authDomain: 'eng-words-memo.firebaseapp.com',
+    databaseURL: 'https://eng-words-memo.firebaseio.com/',
+    projectId: 'eng-words-memo',
+    storageBucket: 'eng-words-memo.appspot.com',
+    messagingSenderId: '631838021020'
+  }
+  let app = Firebase.initializeApp(config)
+  let db = app.database()
+  let usersRef = db.ref('users')
 
   export default {
     components: {
@@ -53,7 +66,12 @@
       return {
         userName: '',
         email: '',
-        password: ''
+        password: '',
+        newUser: {
+          name: '',
+          email: '',
+          password: ''
+        }
       }
     },
     validations: {
@@ -70,16 +88,19 @@
         minLength: minLength(6)
       }
     },
+    firebase: {
+      users: usersRef
+    },
     methods: {
       addUser () {
-        const newUser = {
-          name: this.userName,
-          email: this.email,
-          password: this.password
-        }
-
-        console.log(newUser)
-        // this.$http.put('data.json', registerData)
+        this.newUser.name = this.userName
+        this.newUser.email = this.email
+        this.newUser.password = this.password
+        usersRef.push(this.newUser)
+        this.userName = ''
+        this.email = ''
+        this.password = ''
+        this.$v.$reset()
       }
     }
   }
@@ -117,6 +138,7 @@
           border-right: none;
           width: calc(100% - 3rem);
           display: inline-block;
+          background-color: white;
           &:focus, &:active {
             box-shadow: none;
           }

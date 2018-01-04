@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import App from './App'
 
 import Vuelidate from 'vuelidate'
+import VueFire from 'vuefire'
 
 import { routes } from './routes'
 
@@ -13,6 +14,7 @@ require('../node_modules/bootstrap/scss/bootstrap.scss')
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
+Vue.use(VueFire)
 
 // Vue.http.options.root = 'https://eng-words-memo.firebaseio.com/'
 
