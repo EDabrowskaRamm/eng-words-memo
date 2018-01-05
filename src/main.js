@@ -7,6 +7,7 @@ import App from './App'
 import Vuelidate from 'vuelidate'
 import VueFire from 'vuefire'
 import axios from 'axios'
+import store from './store'
 
 import { routes } from './routes'
 
@@ -41,6 +42,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   // template: '<App/>',
   // components: { App }
   render: h => h(App)

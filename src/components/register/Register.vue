@@ -44,7 +44,6 @@
   import { required, email, minLength } from 'vuelidate/lib/validators'
   // import Firebase from 'firebase'
   // import axios from 'axios'
-  import axios from '../../axios-auth'
 
   // let config = {
   //   apiKey: 'AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ',
@@ -101,13 +100,7 @@
         // usersRef.push(this.newUser)
 
         // axios way
-        axios.post('/signupNewUser?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
-          email: newUser.email,
-          password: newUser.password,
-          returnSecureToken: true
-        })
-          .then(res => console.log(res))
-          .catch(err => console.log(err))
+        this.$store.dispatch('register', newUser)
 
         this.userName = ''
         this.email = ''

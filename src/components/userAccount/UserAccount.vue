@@ -29,34 +29,23 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data () {
     return {
-      userName: '',
-      email: '',
-      password: ''
+      userName: ''
+      // email: '',
+      // password: ''
+    }
+  },
+  computed: {
+    email () {
+      return !this.$store.getters.user ? false : this.$store.getters.user.email
     }
   },
   created () {
-    axios.get('/usersData.json')
-      .then(res => {
-        const data = res.data
-        const users = []
-
-        for (let key in data) {
-          const user = data[key]
-
-          user.id = key
-          users.push(user)
-        }
-        console.log(users)
-        this.userName = users[0].name
-        this.email = users[0].email
-        this.password = users[0].password
-      })
-      .catch(err => console.log(err))
+    this.$store.dispatch('fetchUser')
   }
 }
 </script>

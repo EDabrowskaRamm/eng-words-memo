@@ -1,6 +1,25 @@
 <template lang="html">
   <div class="container">
     <!-- <Form/> -->
+    <form>
+      <h3>Login</h3>
+      <div class="form-group" >
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <!-- <EmailInput/> -->
+        <input class="form-control" aria-describedby="emailHelp" type="email"
+                id="email" v-model="email">
+      </div>
+      <div class="form-group">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <!-- <PassInput/> -->
+        <input class="form-control" aria-describedby="passwordInput" type="password"
+                id="password" v-model="password">
+      </div>
+      <button type="submit" name="button" class="btn btn-outline-success"
+              @click.prevent="login">
+        Login
+      </button>
+    </form>
   </div>
 </template>
 
@@ -11,6 +30,26 @@ export default {
   // components: {
   //   Form
   // }
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      const newUser = {
+        // name: this.userName,
+        email: this.email,
+        password: this.password
+      }
+
+      this.$store.dispatch('login', {
+        email: newUser.email,
+        password: newUser.password
+      })
+    }
+  }
 }
 </script>
 
