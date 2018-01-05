@@ -38,40 +38,37 @@
 </template>
 
 <script>
-  import NameInput from '../../shared/NameInput'
-  import PassInput from '../../shared/PassInput'
-  import EmailInput from '../../shared/EmailInput'
+  // import NameInput from '../../shared/NameInput'
+  // import PassInput from '../../shared/PassInput'
+  // import EmailInput from '../../shared/EmailInput'
   import { required, email, minLength } from 'vuelidate/lib/validators'
-  import Firebase from 'firebase'
+  // import Firebase from 'firebase'
+  // import axios from 'axios'
+  import axios from '../../axios-auth'
 
-  let config = {
-    apiKey: 'AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ',
-    authDomain: 'eng-words-memo.firebaseapp.com',
-    databaseURL: 'https://eng-words-memo.firebaseio.com/',
-    projectId: 'eng-words-memo',
-    storageBucket: 'eng-words-memo.appspot.com',
-    messagingSenderId: '631838021020'
-  }
-  let app = Firebase.initializeApp(config)
-  let db = app.database()
-  let usersRef = db.ref('users')
+  // let config = {
+  //   apiKey: 'AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ',
+  //   authDomain: 'eng-words-memo.firebaseapp.com',
+  //   databaseURL: 'https://eng-words-memo.firebaseio.com/',
+  //   projectId: 'eng-words-memo',
+  //   storageBucket: 'eng-words-memo.appspot.com',
+  //   messagingSenderId: '631838021020'
+  // }
+  // let app = Firebase.initializeApp(config)
+  // let db = app.database()
+  // let usersRef = db.ref('users')
 
   export default {
-    components: {
-      NameInput,
-      PassInput,
-      EmailInput
-    },
+    // components: {
+    //   NameInput,
+    //   PassInput,
+    //   EmailInput
+    // },
     data () {
       return {
         userName: '',
         email: '',
-        password: '',
-        newUser: {
-          name: '',
-          email: '',
-          password: ''
-        }
+        password: ''
       }
     },
     validations: {
@@ -88,15 +85,30 @@
         minLength: minLength(6)
       }
     },
-    firebase: {
-      users: usersRef
-    },
+    // firebase: {
+    //   users: usersRef
+    // },
     methods: {
       addUser () {
-        this.newUser.name = this.userName
-        this.newUser.email = this.email
-        this.newUser.password = this.password
-        usersRef.push(this.newUser)
+        const newUser = {
+          name: this.userName,
+          email: this.email,
+          password: this.password
+        }
+        // this.newUser.name = this.userName
+        // this.newUser.email = this.email
+        // this.newUser.password = this.password
+        // usersRef.push(this.newUser)
+
+        // axios way
+        axios.post('/signupNewUser?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
+          email: newUser.email,
+          password: newUser.password,
+          returnSecureToken: true
+        })
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
+
         this.userName = ''
         this.email = ''
         this.password = ''

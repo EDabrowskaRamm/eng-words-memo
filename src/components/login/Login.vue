@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="container">
-    <Form/>
+    <!-- <Form/> -->
   </div>
 </template>
 
 <script>
-import Form from '../../shared/Form'
+// import Form from '../../shared/Form'
 
 export default {
-  components: {
-    Form
-  }
+  // components: {
+  //   Form
+  // }
 }
 </script>
 

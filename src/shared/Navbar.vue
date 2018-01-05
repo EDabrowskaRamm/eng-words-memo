@@ -12,14 +12,22 @@
       <transition name="slide-fade">
         <div class="collapse navbar-collapse" id="navbarSupportedContent" :class="{ show: toggleNav }">
           <ul class="navbar-nav ml-auto">
+            <!-- basic not logged view -->
             <li class="nav-item">
               <router-link class="nav-link" tag="li" to="/register" active-class="active"><a>Register</a></router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" tag="li" to="/login" active-class="active"><a>Login</a></router-link>
             </li>
+            <!-- logged in user view -->
+            <li class="nav-item">
+              <router-link class="nav-link" tag="li" to="/userAccount" active-class="active"><a>Your account</a></router-link>
+            </li>
             <li class="nav-item">
               <router-link class="nav-link" tag="li" to="/categories" active-class="active"><a>Categories</a></router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" tag="li" to="/" active-class="active"><a>Log out</a></router-link>
             </li>
           </ul>
         </div>
