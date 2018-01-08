@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import App from './App'
 
 import Vuelidate from 'vuelidate'
@@ -9,12 +8,11 @@ import VueFire from 'vuefire'
 import axios from 'axios'
 import store from './store'
 
-import { routes } from './routes'
+import router from './router'
 
 require('../node_modules/bootstrap/scss/bootstrap.scss')
 
 Vue.config.productionTip = false
-Vue.use(VueRouter)
 Vue.use(Vuelidate)
 Vue.use(VueFire)
 
@@ -32,11 +30,6 @@ const resInterceptor = axios.interceptors.response.use(res => {
 
 axios.interceptors.request.eject(reqInterceptor)
 axios.interceptors.response.eject(resInterceptor)
-
-const router = new VueRouter({
-  routes,
-  mode: 'history'
-})
 
 /* eslint-disable no-new */
 new Vue({

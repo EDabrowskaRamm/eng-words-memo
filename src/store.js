@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import axios from './axios-auth'
 import mainAxios from 'axios'
+import router from './router'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,11 @@ export default new Vuex.Store({
     },
     storeUser (state, user) {
       state.user = user
+    },
+    clearAuthData (state) {
+      // mutation to clear data to log out user
+      state.idToken = null
+      state.userId = null
     }
   },
   actions: {
@@ -35,6 +41,8 @@ export default new Vuex.Store({
             token: res.data.idToken,
             userId: res.data.localId
           })
+          // save token id to local storage so that user won't be loggedout after browser refresh
+          localStorage.setItem('token', res.data.idToken)
           // save data to firebase
           dispatch('storeUser', authData)
         })
@@ -48,12 +56,22 @@ export default new Vuex.Store({
       })
         .then(res => {
           console.log(res)
+          // save token id to local storage so that user won't be loggedout after browser refresh
+          localStorage.setItem('token', res.data.idToken)
           commit('authUser', {
             token: res.data.idToken,
             userId: res.data.localId
           })
         })
         .catch(err => console.log(err))
+    },
+    // tryAutoLogin () {
+    //   const token = localStorage.getItem('token')
+    // },
+    logout ({ commit }) {
+      commit('clearAuthData')
+      localStorage.removeItem('token')
+      router.replace('/login')
     },
     storeUser ({ commit, state }, userData) {
       if (!state.idToken) {
@@ -96,6 +114,10 @@ export default new Vuex.Store({
   getters: {
     user (state) {
       return state.user
+    },
+    isAuthenticated (state) {
+      // if token is not null we are authenticated and can login
+      return state.idToken !== null
     }
   }
 })

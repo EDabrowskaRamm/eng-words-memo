@@ -34,9 +34,9 @@
 export default {
   data () {
     return {
-      userName: ''
+      userName: '',
       // email: '',
-      // password: ''
+      password: ''
     }
   },
   computed: {

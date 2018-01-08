@@ -10,24 +10,33 @@
       </button>
 
       <transition name="slide-fade">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" :class="{ show: toggleNav }">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" 
+              :class="{ show: toggleNav }">
           <ul class="navbar-nav ml-auto">
             <!-- basic not logged view -->
-            <li class="nav-item">
-              <router-link class="nav-link" tag="li" to="/register" active-class="active"><a>Register</a></router-link>
+            <li class="nav-item" v-if="!auth">
+              <router-link class="nav-link" to="/register" active-class="active">
+                Register
+              </router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" tag="li" to="/login" active-class="active"><a>Login</a></router-link>
+            <li class="nav-item" v-if="!auth">
+              <router-link class="nav-link" to="/login" active-class="active">
+                Login
+              </router-link>
             </li>
             <!-- logged in user view -->
-            <li class="nav-item">
-              <router-link class="nav-link" tag="li" to="/userAccount" active-class="active"><a>Your account</a></router-link>
+            <li class="nav-item" v-if="auth">
+              <router-link class="nav-link" to="/userAccount" active-class="active">
+                Your account
+              </router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" tag="li" to="/categories" active-class="active"><a>Categories</a></router-link>
+            <li class="nav-item" v-if="auth">
+              <router-link class="nav-link" to="/categories" active-class="active">
+                Categories
+              </router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" tag="li" to="/" active-class="active"><a>Log out</a></router-link>
+            <li class="nav-item" v-if="auth">
+              <a class="nav-link" @click="onLogout">Log out</a>
             </li>
           </ul>
         </div>
@@ -47,7 +56,16 @@ export default {
     // window.addEventListener('blur', collapseNav (){
     //   this.toggleNav = false
     // })
-
+    onLogout () {
+      console.log('log out')
+      this.$store.dispatch('logout')
+    }
+  },
+  computed: {
+    auth () {
+      // use getters as a property, not function (don't need ())
+      return this.$store.getters.isAuthenticated
+    }
   }
 }
 </script>
