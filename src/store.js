@@ -47,7 +47,13 @@ export default new Vuex.Store({
           dispatch('storeUser', authData)
           router.replace('/userAccount')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          dispatch('registerError')
+        })
+    },
+    registerError () {
+      return true
     },
     login ({ commit }, authData) {
       axios.post('/verifyPassword?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {

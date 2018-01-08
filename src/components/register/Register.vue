@@ -30,6 +30,7 @@
               :disabled="$v.$invalid" @click.prevent="addUser">
         Create account
       </button>
+      <p v-if="registerError" class="invalid">This email address is already taken.</p>
     </form>
   </div>
 </template>
@@ -42,7 +43,8 @@
       return {
         userName: '',
         email: '',
-        password: ''
+        password: '',
+        registerError: false
       }
     },
     validations: {
@@ -66,6 +68,12 @@
           email: this.email,
           password: this.password
         }
+
+        if (this.$store.dispatch('registerError')) {
+          console.log('user not registered')
+          this.registerError = true
+        }
+
         this.$store.dispatch('register', newUser)
 
         this.userName = ''
@@ -132,6 +140,10 @@
           border-color: $vueColor;
           background-color: $vueColor;
         }
+      }
+      button > p.invalid {
+        color: #dc3545;
+        font-size: .9rem;
       }
 
       //validations
