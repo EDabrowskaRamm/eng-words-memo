@@ -4,7 +4,6 @@
       <h3>Register</h3>
       <div class="form-group" :class="{invalid: $v.userName.$error}">
         <i class="fa fa-user" aria-hidden="true"></i>
-        <!-- <NameInput/> -->
         <input class="form-control" aria-describedby="emailHelp" placeholder="User name"
                 type="text" id="userName" v-model="userName" @input="$v.userName.$touch()">
         <p v-if="$v.userName.$error" :class="{invalid: $v.userName.$error}">
@@ -13,7 +12,6 @@
       </div>
       <div class="form-group" :class="{invalid: $v.email.$error}" >
         <i class="fa fa-envelope" aria-hidden="true"></i>
-        <!-- <EmailInput/> -->
         <input class="form-control" aria-describedby="emailHelp" placeholder="Email"
                 type="email" id="email" v-model="email" @input="$v.email.$touch()">
         <p v-if="$v.email.$error" :class="{invalid: $v.email.$error}">
@@ -22,7 +20,6 @@
       </div>
       <div class="form-group" :class="{invalid: $v.password.$error}">
         <i class="fa fa-lock" aria-hidden="true"></i>
-        <!-- <PassInput/> -->
         <input class="form-control" aria-describedby="passwordInput" placeholder="Password"
                 type="password" id="password" v-model="password" @input="$v.password.$touch()">
         <p v-if="$v.password.$error" :class="{invalid: $v.password.$error}">
@@ -38,31 +35,9 @@
 </template>
 
 <script>
-  // import NameInput from '../../shared/NameInput'
-  // import PassInput from '../../shared/PassInput'
-  // import EmailInput from '../../shared/EmailInput'
   import { required, email, minLength } from 'vuelidate/lib/validators'
-  // import Firebase from 'firebase'
-  // import axios from 'axios'
-
-  // let config = {
-  //   apiKey: 'AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ',
-  //   authDomain: 'eng-words-memo.firebaseapp.com',
-  //   databaseURL: 'https://eng-words-memo.firebaseio.com/',
-  //   projectId: 'eng-words-memo',
-  //   storageBucket: 'eng-words-memo.appspot.com',
-  //   messagingSenderId: '631838021020'
-  // }
-  // let app = Firebase.initializeApp(config)
-  // let db = app.database()
-  // let usersRef = db.ref('users')
 
   export default {
-    // components: {
-    //   NameInput,
-    //   PassInput,
-    //   EmailInput
-    // },
     data () {
       return {
         userName: '',
@@ -84,9 +59,6 @@
         minLength: minLength(6)
       }
     },
-    // firebase: {
-    //   users: usersRef
-    // },
     methods: {
       addUser () {
         const newUser = {
@@ -94,12 +66,6 @@
           email: this.email,
           password: this.password
         }
-        // this.newUser.name = this.userName
-        // this.newUser.email = this.email
-        // this.newUser.password = this.password
-        // usersRef.push(this.newUser)
-
-        // axios way
         this.$store.dispatch('register', newUser)
 
         this.userName = ''

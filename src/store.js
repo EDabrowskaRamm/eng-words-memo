@@ -45,6 +45,7 @@ export default new Vuex.Store({
           localStorage.setItem('token', res.data.idToken)
           // save data to firebase
           dispatch('storeUser', authData)
+          router.replace('/userAccount')
         })
         .catch(err => console.log(err))
     },
@@ -62,6 +63,7 @@ export default new Vuex.Store({
             token: res.data.idToken,
             userId: res.data.localId
           })
+          router.replace('/userAccount')
         })
         .catch(err => console.log(err))
     },
