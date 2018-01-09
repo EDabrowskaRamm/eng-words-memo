@@ -56,6 +56,10 @@ export default {
     onLogout () {
       console.log('log out')
       this.$store.dispatch('logout')
+
+      // localStorage.removeItem('userName')
+      // localStorage.removeItem('email')
+      // localStorage.removeItem('password')
     }
   },
   computed: {

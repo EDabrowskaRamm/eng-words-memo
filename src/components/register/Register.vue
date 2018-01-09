@@ -70,11 +70,13 @@
         }
 
         if (this.$store.dispatch('registerError')) {
-          console.log('user not registered')
           this.registerError = true
         }
 
         this.$store.dispatch('register', newUser)
+        // localStorage.setItem('userName', newUser.name)
+        // localStorage.setItem('email', newUser.email)
+        // localStorage.setItem('password', newUser.password)
 
         this.userName = ''
         this.email = ''

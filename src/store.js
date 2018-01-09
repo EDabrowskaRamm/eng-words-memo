@@ -43,6 +43,7 @@ export default new Vuex.Store({
           })
           // save token id to local storage so that user won't be loggedout after browser refresh
           localStorage.setItem('token', res.data.idToken)
+          localStorage.setItem('id', res.data.localId)
           // save data to firebase
           dispatch('storeUser', authData)
           router.replace('/userAccount')
@@ -65,6 +66,7 @@ export default new Vuex.Store({
           console.log(res)
           // save token id to local storage so that user won't be loggedout after browser refresh
           localStorage.setItem('token', res.data.idToken)
+          localStorage.setItem('id', res.data.localId)
           commit('authUser', {
             token: res.data.idToken,
             userId: res.data.localId
@@ -76,12 +78,26 @@ export default new Vuex.Store({
           dispatch('registerError')
         })
     },
-    // tryAutoLogin () {
-    //   const token = localStorage.getItem('token')
-    // },
+    tryAutoLogin ({ commit }) {
+      const token = localStorage.getItem('token')
+      const userId = localStorage.getItem('userId')
+
+      if (!token) {
+        return null
+      }
+
+      commit('authUser', {
+        token: token,
+        userId: userId
+      })
+      // const email = localStorage.getItem('email')
+      // const password = localStorage.getItem('password')
+      // const userName = localStorage.getItem('userName')
+    },
     logout ({ commit }) {
       commit('clearAuthData')
       localStorage.removeItem('token')
+      localStorage.removeItem('id')
       router.replace('/login')
     },
     storeUser ({ commit, state }, userData) {
