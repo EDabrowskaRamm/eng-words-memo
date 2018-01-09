@@ -1,92 +1,152 @@
 <template lang="html">
   <div class="container">
-    <!-- <Form/> -->
     <form>
       <h3>Login</h3>
-      <div class="form-group" >
+      <div class="form-group" :class="{invalid: $v.email.$error}">
         <i class="fa fa-envelope" aria-hidden="true"></i>
-        <!-- <EmailInput/> -->
-        <input class="form-control" aria-describedby="emailHelp" type="email"
-                id="email" v-model="email">
+        <input class="form-control" aria-describedby="emailHelp" placeholder="Email"
+                type="email" id="email" v-model="email" @input="$v.email.$touch()">
+        <p v-if="$v.email.$error" :class="{invalid: $v.email.$error}">
+          Please provide a valid email address
+        </p>
       </div>
-      <div class="form-group">
+      <div class="form-group" :class="{invalid: $v.password.$error}">
         <i class="fa fa-lock" aria-hidden="true"></i>
-        <!-- <PassInput/> -->
-        <input class="form-control" aria-describedby="passwordInput" type="password"
-                id="password" v-model="password">
+        <input class="form-control" aria-describedby="passwordInput" placeholder="Password"
+                type="password" id="password" v-model="password" @input="$v.password.$touch()">
+        <p v-if="$v.password.$error" :class="{invalid: $v.password.$error}">
+          Password should have at least {{ $v.password.$params.minLength.min }} characters
+        </p>
       </div>
       <button type="submit" name="button" class="btn btn-outline-success"
-              @click.prevent="login">
-        Login
+              :disabled="$v.$invalid" @click.prevent="login">Login
       </button>
+      <p v-if="loginError" class="invalid">Email or password are incorrect</p>
     </form>
   </div>
 </template>
 
 <script>
-// import Form from '../../shared/Form'
-
-export default {
-  // components: {
-  //   Form
-  // }
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    login () {
-      const newUser = {
-        // name: this.userName,
-        email: this.email,
-        password: this.password
+  import { required, email, minLength } from 'vuelidate/lib/validators'
+  
+  export default {
+    data () {
+      return {
+        email: '',
+        password: '',
+        loginError: false
       }
+    },
+    validations: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required,
+        minLength: minLength(6)
+      }
+    },
+    methods: {
+      login () {
+        const newUser = {
+          email: this.email,
+          password: this.password
+        }
 
-      this.$store.dispatch('login', {
-        email: newUser.email,
-        password: newUser.password
-      })
+        this.$store.dispatch('login', {
+          email: newUser.email,
+          password: newUser.password
+        })
+
+        // error
+        if (this.$store.dispatch('registerError')) {
+          this.loginError = true
+          console.log(newUser.email, newUser.password)
+        }
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
-.container {
-  form {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    background-color: white;
-    padding: 1rem;
-    margin: 1rem 0;
-    box-shadow: 10px 10px 5px -5px rgba(0,0,0,0.26);
-    h3 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .form-group {
-      margin-bottom: 1.5rem;
-      .fa {
-        font-size: 1.4rem;
-        padding-right: .75rem;
-      }
-    }
-  }
+  @import '../../assets/_variables.scss';
 
-
-  //mobile
-  @media(min-width: 767px) {
-    .container {
+  .container {
+    form {
       display: flex;
-      justify-content: center;
-      form {
-        width: 481px;
+      flex-direction: column;
+      text-align: left;
+      background-color: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 10px 10px 5px -5px rgba(0,0,0,0.26);
+      h3 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+        .fa {
+          font-size: 1.4rem;
+          padding-right: .75rem;
+        }
+        .fa-envelope {
+          padding-right: .5rem;
+        }
+        input {
+          border-radius: 0;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          width: calc(100% - 3rem);
+          display: inline-block;
+          background-color: white;
+          &:focus, &:active {
+            box-shadow: none;
+          }
+        }
+        p.invalid {
+          color: #dc3545;
+          font-size: .9rem;
+          padding-left: 2.2rem;
+          padding-top: .2rem;
+        }
+      }
+      button {
+        align-self: flex-end;
+      }
+      .btn-outline-success {
+        color: $vueColor;
+        border-color: $vueColor;
+        &:hover, &:focus, &:active {
+          color: #fff;
+          border-color: $vueColor;
+          background-color: $vueColor;
+        }
+      }
+      p.invalid {
+        color: #dc3545;
+        font-size: .9rem;
+      }
+
+      //validations
+      .form-group.invalid {
+        color: #dc3545;
       }
     }
-  }
 
-}
+
+    //mobile
+    @media(min-width: 767px) {
+      .container {
+        display: flex;
+        justify-content: center;
+        form {
+          width: 481px;
+        }
+      }
+    }
+
+  }
 </style>

@@ -26,7 +26,17 @@ const routes = [
       }
     }
   },
-  { path: '/userAccount', component: UserAccount }
+  { path: '/userAccount',
+    component: UserAccount,
+    beforeEnter (to, from, next) {
+      // if the user is logged in one may enter, else one need to login
+      if (store.state.idToken) {
+        next()
+      } else {
+        next('/login')
+      }
+    }
+  }
 
 ]
 

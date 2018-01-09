@@ -55,7 +55,7 @@ export default new Vuex.Store({
     registerError () {
       return true
     },
-    login ({ commit }, authData) {
+    login ({ commit, dispatch }, authData) {
       axios.post('/verifyPassword?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
         email: authData.email,
         password: authData.password,
@@ -71,7 +71,10 @@ export default new Vuex.Store({
           })
           router.replace('/userAccount')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          dispatch('registerError')
+        })
     },
     // tryAutoLogin () {
     //   const token = localStorage.getItem('token')

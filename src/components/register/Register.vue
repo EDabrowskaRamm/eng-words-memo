@@ -10,7 +10,7 @@
           User name should have at least {{ $v.userName.$params.minLength.min }} letters
         </p>
       </div>
-      <div class="form-group" :class="{invalid: $v.email.$error}" >
+      <div class="form-group" :class="{invalid: $v.email.$error}">
         <i class="fa fa-envelope" aria-hidden="true"></i>
         <input class="form-control" aria-describedby="emailHelp" placeholder="Email"
                 type="email" id="email" v-model="email" @input="$v.email.$touch()">
@@ -30,7 +30,7 @@
               :disabled="$v.$invalid" @click.prevent="addUser">
         Create account
       </button>
-      <p v-if="registerError" class="invalid">This email address is already taken.</p>
+      <p v-if="registerError" class="invalid">This email address is already taken</p>
     </form>
   </div>
 </template>
@@ -141,7 +141,7 @@
           background-color: $vueColor;
         }
       }
-      button > p.invalid {
+      p.invalid {
         color: #dc3545;
         font-size: .9rem;
       }

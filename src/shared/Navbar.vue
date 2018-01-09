@@ -5,7 +5,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
               aria-expanded="false" aria-label="Toggle navigation"
-              @click="toggleNav = !toggleNav" >
+              @click="toggleNav = !toggleNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -53,9 +53,6 @@ export default {
     }
   },
   methods: {
-    // window.addEventListener('blur', collapseNav (){
-    //   this.toggleNav = false
-    // })
     onLogout () {
       console.log('log out')
       this.$store.dispatch('logout')
