@@ -1,13 +1,22 @@
 <template lang="html">
-  <div class="container">
+  <div class="container categories">
     <h3>Choose category</h3>
+    <CategoryTmpl/>
   </div>
 </template>
 
 <script>
-export default {
-}
+  import CategoryTmpl from './CategoryTmpl.vue'
+
+  export default {
+    components: {
+      CategoryTmpl
+    }
+  }
 </script>
 
 <style lang="scss">
+  .container.categories {
+
+  }
 </style>

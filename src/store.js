@@ -93,10 +93,16 @@ export default new Vuex.Store({
       const now = new Date()
 
       if (!token) {
+        router.replace('/login')
         return null
       }
 
       if (now >= expirationDate) {
+        // if token and date are expired clear localstorage
+        localStorage.removeItem('token')
+        localStorage.removeItem('userId')
+        localStorage.removeItem('expirationDate')
+        router.replace('/login')
         return null
       }
 
@@ -125,7 +131,7 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
-    fetchUser ({ commit, state }) {
+    fetchUser ({ commit, state }, userData) {
       if (!state.idToken) {
         //  if we don't have token
         return
@@ -141,11 +147,13 @@ export default new Vuex.Store({
 
           user.id = key
 
-          // console.log(data)
-
           users.push(user)
         }
-        console.log(users[0].email)
+
+        // for (let i = 0; i < users.length; i++) {
+        //   console.log(users[i].email)
+        // }
+
         // tu pobieram tylko przykładowe dane; trzeba ogarnąć, eby pobierane były dane konkretnego usera
         commit('storeUser', users[0])
       })
