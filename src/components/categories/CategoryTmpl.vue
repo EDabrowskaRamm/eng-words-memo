@@ -1,29 +1,23 @@
 <template lang="html">
-  <ul>
-    <li class="category" v-for="category in categories">
+  <ul class="row">
+    <li class="category col-xs-12 col-sm-6 col-md-4 col-lg-3" 
+        v-for="(category, catId) in categories" :key="category">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <p>
         <a class="" data-toggle="collapse" href="#collapseExample" role="button"
             aria-expanded="false" aria-controls="collapseExample" 
-            @click="toggleCat = !toggleCat"> {{ category1.mainTitle }}
+            @click="showSubcat"> {{ category.mainTitle }}
         </a>
       </p>
       <transition-group name="slide-fade">
         <div class="collapse" id="collapseExample" :class="{ show: toggleCat }"
-              v-for="(item, id) in category1.subTitles" :key="id">
+              v-for="(item, itemId) in category.subTitles" :key="itemId">
           <div class="card card-body">
             <p> {{ item }} </p>
-            <!-- <a class="btn btn-outline-secondary" role="button">Learn</a>
-            <a class="btn btn-outline-dark" role="button">Test</a> -->
             <span>
-              <a class="btn btn-outline-secondary" role="button">Learn</a>
-              <a class="btn btn-outline-dark" role="button">Test</a>
+              <a class="btn btn-outline-secondary" role="button" @click="goLearn">Learn</a>
+              <a class="btn btn-outline-dark" role="button" @click="doTest">Test</a>
             </span>
-            <!-- <li class="nav-item" v-if="auth">
-              <router-link class="nav-link" to="/categories" active-class="active">
-                Categories
-              </router-link>
-            </li> -->
           </div>
         </div>
       </transition-group>
@@ -36,22 +30,48 @@
     data () {
       return {
         toggleCat: false,
-        categories: [this.category1],
-        category1: {
-          mainTitle: 'Home',
-          subTitles: ['Kitchen', 'Living room', 'Bathroom']
-        }
+        categories: [
+          {
+            mainTitle: 'Home',
+            subTitles: ['Kitchen', 'Living room', 'Bathroom']
+          },
+          {
+            mainTitle: 'Animals',
+            subTitles: ['Wild', 'Domestic', 'Farm animals']
+          },
+          {
+            mainTitle: 'Food',
+            subTitles: ['Fruits', 'Vegetables', 'Meals', 'Drinks']
+          },
+          {
+            mainTitle: 'Other',
+            subTitles: ['School', 'Work']
+          }
+        ]
+      }
+    },
+    methods: {
+      showSubcat () {
+        console.log()
+        !this.toggleCat ? this.toggleCat = true : this.toggleCat = false
+      },
+      goLearn () {
+        console.log('learn')
+      },
+      doTest () {
+        console.log('test')
       }
     }
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   ul {
     list-style-type: none;
     padding-left: 0;
     .category {
       text-align: left;
+      padding-top: 1rem;
       p {
         display: inline-block;
       }
@@ -74,6 +94,15 @@
         }
       }
     }
+
+    @media (min-width: 577px) {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+    }
+
   }
   // span{
   //       display: flex;
