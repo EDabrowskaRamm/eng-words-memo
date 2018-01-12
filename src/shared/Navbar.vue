@@ -9,9 +9,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <transition name="slide">
-        <div class="navbar-collapse" id="navbarSupportedContent" 
-              v-show="collapse" >
+      <transition name="slide" type="animation">
+        <div class="navbar-collapse" id="navbarSupportedContent" v-show="collapse">
           <ul class="navbar-nav ml-auto">
             <!-- basic not logged view -->
             <li class="nav-item" v-if="!auth">
@@ -50,7 +49,6 @@ export default {
   data () {
     return {
       collapse: false
-      // :class="{ show: show }"
     }
   },
   methods: {
@@ -106,10 +104,6 @@ export default {
     animation: slide-out .5s ease-out forwards;
     transition: opacity .5s;
     opacity: 0;
-  }
-
-  .slide-move {
-    transition: transform 1s;
   }
 
   @keyframes slide-in {

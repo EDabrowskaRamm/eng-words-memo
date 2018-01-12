@@ -6,21 +6,23 @@
       <p>
         <a class="" data-toggle="collapse" href="#collapseExample" role="button"
             aria-expanded="false" aria-controls="collapseExample" 
-            @click="showSubcat"> {{ category.mainTitle }}
+            @click="showSubcat(catId)"> {{ category.mainTitle }}
         </a>
       </p>
-      <transition-group name="slide-fade">
-        <div class="collapse" id="collapseExample" :class="{ show: toggleCat}"
-              v-for="(item, itemId) in category.subTitles" :key="itemId">
-          <div class="card card-body">
-            <p> {{ item }} </p>
-            <span>
-              <a class="btn btn-outline-secondary" role="button" @click="goLearn">Learn</a>
-              <a class="btn btn-outline-dark" role="button" @click="doTest">Test</a>
-            </span>
+      <transition name="slide" type="animation">
+        <span>
+          <div class="collapse" id="collapseExample" :class="{ show: toggleCat }"
+                v-for="(item, itemId) in category.subTitles" :key="itemId">
+            <div class="card card-body">
+              <p> {{ item }} </p>
+              <span>
+                <a class="btn btn-outline-secondary" role="button" @click="goLearn(itemId)">Learn</a>
+                <a class="btn btn-outline-dark" role="button" @click="doTest(itemId)">Test</a>
+              </span>
+            </div>
           </div>
-        </div>
-      </transition-group>
+        </span>
+      </transition>
     </li>
   </ul>
 </template>
@@ -51,21 +53,23 @@
       }
     },
     methods: {
-      showSubcat () {
-        console.log()
+      showSubcat (id) {
+        console.log(id)
         !this.toggleCat ? this.toggleCat = true : this.toggleCat = false
       },
-      goLearn () {
-        console.log('learn')
+      goLearn (id) {
+        console.log(id)
       },
-      doTest () {
-        console.log('test')
+      doTest (id) {
+        console.log(id)
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  @import '../../assets/_variables.scss';
+  
   ul {
     list-style-type: none;
     padding-left: 0;
@@ -74,6 +78,13 @@
       padding-top: 1rem;
       p {
         display: inline-block;
+        a {
+          color: $textColor;
+          &:hover, &:focus {
+            color: $hoverLinkColor;
+            text-decoration: none;
+          }
+        }
       }
       .collapse {
         border-radius: 0;
@@ -111,11 +122,42 @@
     //   width: 100%;
     // }
   // }
+
+  // animation
+  .slide-enter {
+    opacity: 0;
+  }
+
+  .slide-enter-active {
+    animation: slide-in .5s ease-out forwards;
+    transition: opacity .8s;
+  }
+
+  .slide-leave-active {
+    animation: slide-out .5s ease-out forwards;
+    transition: opacity .5s;
+    opacity: 0;
+  }
+
+  // .slide-move {
+  //   transition: transform 1s;
+  // }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(-10px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10px);
+    }
+  }
 </style>
-
-
-// v-for="category in categories"
-// {{ category1.mainTitle }}
-
-// v-for="item in category1.subTitles"
-// {{ item }}

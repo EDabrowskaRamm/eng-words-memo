@@ -16,6 +16,7 @@ export default {
     Navbar
   },
   created () {
+    // created = fires whenever component is loading
     this.$store.dispatch('tryAutoLogin')
   }
 }
@@ -32,6 +33,7 @@ body {
   background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(180,221,215,1) 0%, rgba(5,142,123,1) 46%, rgba(43,61,79,1) 100%);
   color: $textColor;
   height: 100%;
+  padding-bottom: 20px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
