@@ -5,13 +5,13 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
               aria-expanded="false" aria-label="Toggle navigation"
-              @click="toggleNav = !toggleNav">
+              @click="collapse = !collapse">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <transition name="slide-fade">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" 
-              :class="{ show: toggleNav }">
+      <transition name="fade">
+        <div class="navbar-collapse" id="navbarSupportedContent" 
+              v-show="collapse" >
           <ul class="navbar-nav ml-auto">
             <!-- basic not logged view -->
             <li class="nav-item" v-if="!auth">
@@ -49,7 +49,8 @@
 export default {
   data () {
     return {
-      toggleNav: false
+      collapse: false
+      // :class="{ show: show }"
     }
   },
   methods: {
@@ -92,16 +93,16 @@ nav {
 }
 
 //transition
-// .slide-fade-enter {
-//   opacity: 0;
-// }
-// .slide-fade-enter-active {
-//   transition: all .8s ease;
-// }
-// .slide-fade-leave-active {
-//   transition: all .8s ease;
-//   opacity: 0;
-// }
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 1s;
+}
+.fade-leave-active {
+  transition: opacity 1s;
+  opacity: 0;
+}
 
 
 </style>

@@ -1,7 +1,7 @@
 <template lang="html">
   <ul class="row">
     <li class="category col-xs-12 col-sm-6 col-md-4 col-lg-3" 
-        v-for="(category, catId) in categories" :key="category">
+        v-for="(category, catId) in categories" :key="catId">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <p>
         <a class="" data-toggle="collapse" href="#collapseExample" role="button"
@@ -10,7 +10,7 @@
         </a>
       </p>
       <transition-group name="slide-fade">
-        <div class="collapse" id="collapseExample" :class="{ show: toggleCat }"
+        <div class="collapse" id="collapseExample" :class="{ show: toggleCat}"
               v-for="(item, itemId) in category.subTitles" :key="itemId">
           <div class="card card-body">
             <p> {{ item }} </p>
