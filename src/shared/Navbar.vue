@@ -9,7 +9,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <transition name="fade">
+      <transition name="slide">
         <div class="navbar-collapse" id="navbarSupportedContent" 
               v-show="collapse" >
           <ul class="navbar-nav ml-auto">
@@ -73,36 +73,61 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/_variables.scss';
+  @import '../assets/_variables.scss';
 
-nav {
-  background-color: transparent;
-  .container > a.navbar-brand {
-    color: $textColor;
-    &:hover, &:focus {
-      color: $hoverLinkColor;
+  nav {
+    background-color: transparent;
+    .container > a.navbar-brand {
+      color: $textColor;
+      &:hover, &:focus {
+        color: $hoverLinkColor;
+      }
+    }
+    #navbarSupportedContent .nav-link {
+      color: $textColor;
+      &:hover, &:focus {
+        color: $hoverLinkColor;
+      }
+    }
+
+  }
+
+  // animation
+  .slide-enter {
+    opacity: 0;
+  }
+
+  .slide-enter-active {
+    animation: slide-in .5s ease-out forwards;
+    transition: opacity .8s;
+  }
+
+  .slide-leave-active {
+    animation: slide-out .5s ease-out forwards;
+    transition: opacity .5s;
+    opacity: 0;
+  }
+
+  .slide-move {
+    transition: transform 1s;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(-10px);
+    }
+    to {
+      transform: translateY(0);
     }
   }
-  #navbarSupportedContent .nav-link {
-    color: $textColor;
-    &:hover, &:focus {
-      color: $hoverLinkColor;
+
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10px);
     }
   }
-
-}
-
-//transition
-.fade-enter {
-  opacity: 0;
-}
-.fade-enter-active {
-  transition: opacity 1s;
-}
-.fade-leave-active {
-  transition: opacity 1s;
-  opacity: 0;
-}
-
 
 </style>
