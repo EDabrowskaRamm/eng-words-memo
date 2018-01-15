@@ -5,6 +5,8 @@ import AdminPanel from './components/admin/AdminPanel.vue'
 import Login from './components/login/Login.vue'
 import Register from './components/register/Register.vue'
 import CategoriesPanel from './components/categories/CategoriesPanel.vue'
+import CatHomeKitchen from './components/categories/CategoryHome/CatHomeKitchen.vue'
+
 import UserAccount from './components/userAccount/UserAccount.vue'
 
 // import store from './store'
@@ -20,6 +22,10 @@ const routes = [
   },
   { path: '/userAccount',
     component: UserAccount
+  },
+  {
+    path: '/catHomeKitchen',
+    component: CatHomeKitchen
   }
 
 ]

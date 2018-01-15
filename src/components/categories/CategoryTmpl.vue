@@ -10,13 +10,17 @@
         </a>
       </p>
       <transition name="slide" type="animation">
-        <span class="collapse" :id="catId" :class="{ show: toggleCat }">
-          <div v-for="(item, itemId) in category.subTitles" :key="itemId">
+        <span class="collapse" :id="catId">
+          <div v-for="(item, itemId) in category.subCategories" :key="itemId">
             <div class="card card-body">
-              <p> {{ item }} </p>
+              <p> {{ item.subTitle }} </p>
               <span>
-                <a class="btn btn-outline-secondary" role="button" @click="goLearn(itemId)">Learn</a>
-                <a class="btn btn-outline-dark" role="button" @click="doTest(itemId)">Test</a>
+                <router-link class="btn btn-outline-secondary" role="button" :to="item.learn"
+                              active-class="active"> Learn
+                </router-link>
+                <router-link class="btn btn-outline-dark" role="button" :to="item.test"
+                              active-class="active"> Test
+                </router-link>
               </span>
             </div>
           </div>
@@ -30,24 +34,39 @@
   export default {
     data () {
       return {
-        toggleCat: false,
         categories: [
           {
             mainTitle: 'Home',
-            subTitles: ['Kitchen', 'Living room', 'Bathroom']
-          },
-          {
-            mainTitle: 'Animals',
-            subTitles: ['Wild', 'Domestic', 'Farm animals']
-          },
-          {
-            mainTitle: 'Food',
-            subTitles: ['Fruits', 'Vegetables', 'Meals', 'Drinks']
-          },
-          {
-            mainTitle: 'Other',
-            subTitles: ['School', 'Work']
+            subCategories: [
+              {
+                subTitle: 'Kitchen',
+                learn: '/catHomeKitchen',
+                test: '/url'
+              }
+              // {
+              //   subTitle: 'Living room',
+              //   learn: 'url',
+              //   test: 'url'
+              // },
+              // {
+              //   subTitle: 'Bathroom',
+              //   learn: 'url',
+              //   test: 'url'
+              // }
+            ]
           }
+          // {
+          //   mainTitle: 'Animals',
+          //   subTitles: ['Wild', 'Domestic', 'Farm animals']
+          // },
+          // {
+          //   mainTitle: 'Food',
+          //   subTitles: ['Fruits', 'Vegetables', 'Meals', 'Drinks']
+          // },
+          // {
+          //   mainTitle: 'Other',
+          //   subTitles: ['School', 'Work']
+          // }
         ]
       }
     },
@@ -60,12 +79,6 @@
         } else {
           collapsedSpan.classList.add('show')
         }
-      },
-      goLearn (id) {
-        console.log(id)
-      },
-      doTest (id) {
-        console.log(id)
       }
     }
   }
