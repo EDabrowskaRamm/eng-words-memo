@@ -4,15 +4,14 @@
         v-for="(category, catId) in categories" :key="catId">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <p>
-        <a class="" data-toggle="collapse" href="#collapseExample" role="button"
-            aria-expanded="false" aria-controls="collapseExample" 
-            @click="showSubcat(catId)"> {{ category.mainTitle }}
+        <a class="" data-toggle="collapse" :href="catId" role="button"
+            aria-expanded="false" aria-controls="collapseExample"
+            @click.prevent="showSubcat(catId, $event)"> {{ category.mainTitle }}
         </a>
       </p>
       <transition name="slide" type="animation">
-        <span>
-          <div class="collapse" id="collapseExample" :class="{ show: toggleCat }"
-                v-for="(item, itemId) in category.subTitles" :key="itemId">
+        <span class="collapse" :id="catId" :class="{ show: toggleCat }">
+          <div v-for="(item, itemId) in category.subTitles" :key="itemId">
             <div class="card card-body">
               <p> {{ item }} </p>
               <span>
@@ -53,9 +52,14 @@
       }
     },
     methods: {
-      showSubcat (id) {
-        console.log(id)
-        !this.toggleCat ? this.toggleCat = true : this.toggleCat = false
+      showSubcat (id, event) {
+        const collapsedSpan = event.srcElement.parentElement.nextElementSibling
+
+        if (collapsedSpan.classList.value === 'collapse show') {
+          collapsedSpan.classList.remove('show')
+        } else {
+          collapsedSpan.classList.add('show')
+        }
       },
       goLearn (id) {
         console.log(id)
@@ -90,8 +94,12 @@
         border-radius: 0;
         .card.card-body {
           border-radius: 0;
+          border: none;
+          background-color: transparent;
+          padding: 0;
           span {
             display: flex;
+            margin-bottom: 1rem;
             a {
               flex-grow: 1;
             }
