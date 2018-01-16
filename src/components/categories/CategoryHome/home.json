@@ -1,0 +1,81 @@
+{
+    "title": "home",
+    "en": {
+        "bathroom": {
+            "title": "bathroom",
+            "item1": "bath",
+            "item2": "bathroom cabinet",
+            "item3": "mirror",     
+            "item4": "rug",
+            "item5": "scale",
+            "item6": "shower",        
+            "item7": "soap",   
+            "item8": "toilet",           
+            "item9": "toothbrush",                     
+            "item10": "towel",
+            "item11": "washbasin"
+        },
+        "kitchen": {
+            "title": "kitchen",
+            "item1": "chair",
+            "item2": "dishwasher",
+            "item3": "fridge",     
+            "item4": "kettle",
+            "item5": "microwave oven",
+            "item6": "oven",        
+            "item7": "sink",   
+            "item8": "table"     
+        },
+        "livingRoom": {
+            "title": "living room",
+            "item1": "armchair",
+            "item2": "blanket",
+            "item3": "bookcase",     
+            "item4": "coffee table",
+            "item5": "cushion",
+            "item6": "jukebox",        
+            "item7": "painting",   
+            "item8": "sofa",           
+            "item9": "TV"       
+        }
+    },
+    "pl": {
+        "bathroom": {
+            "title": "łazienka",
+            "item1": "wanna",
+            "item2": "szafka łazienkowa",
+            "item3": "lustro",     
+            "item4": "dywan",
+            "item5": "waga",
+            "item6": "prysznic",        
+            "item7": "mydło",   
+            "item8": "toaleta",           
+            "item9": "szczoteczka do zębów",                     
+            "item10": "ręcznik",
+            "item11": "umywalka"
+        },
+        "kitchen": {
+            "title": "kuchnia",
+            "item1": "krzesło",
+            "item2": "zmywarka",
+            "item3": "lodówka",     
+            "item4": "czajnik",
+            "item5": "kuchenka mikrofalowa",
+            "item6": "piekarnik",        
+            "item7": "zlew",   
+            "item8": "stół"       
+        },
+        "livingRoom": {
+            "title": "pokój dzienny",
+            "item1": "fotel",
+            "item2": "koc",
+            "item3": "regał",     
+            "item4": "stolik na kawę",
+            "item5": "poduszka",
+            "item6": "szafa grająca",        
+            "item7": "obraz",   
+            "item8": "kanapa",           
+            "item9": "TV"     
+        }
+    }
+}

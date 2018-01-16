@@ -1,9 +1,13 @@
 <template lang="html">
-  <span>
+  <span class="learningTmpl" >
     <h3> Learning {{ catTitle }}: {{ catSubTitle }} </h3>
-    <span>
-      <img :src="require(`@/assets/${picture}.jpg`)" class="img-fluid" :alt="picture" />
-    </span>
+    <div class="wrapper">
+      <img :src="require(`@/assets/${picture}.jpg`)" class="img-fluid" :alt="picture"/>
+      <!-- <div>
+        <i class="fa fa-search-plus" aria-hidden="true"></i>
+        <i class="fa fa-search-minus" aria-hidden="true"></i>
+      </div> -->
+    </div>
   </span>
 </template>
 
@@ -11,10 +15,12 @@
 export default {
   data () {
     return {
-      catTitle: '',
-      catSubTitle: '',
-      picture: 'kitchen'
     }
+  },
+  props: {
+    catTitle: '',
+    catSubTitle: '',
+    picture: ''
   },
   methods: {
 
@@ -23,6 +29,13 @@ export default {
 </script>
 
 <style lang="scss">
-
+  .learningTmpl {
+    .wrapper {
+      position: relative;
+    }
+    .img-fluid {
+      padding: 1rem 0;
+    }
+  }
 
 </style>
