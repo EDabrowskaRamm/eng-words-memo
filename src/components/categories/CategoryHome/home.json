@@ -18,13 +18,15 @@
         "kitchen": {
             "title": "kitchen",
             "item1": "chair",
-            "item2": "dishwasher",
-            "item3": "fridge",     
-            "item4": "kettle",
-            "item5": "microwave oven",
-            "item6": "oven",        
-            "item7": "sink",   
-            "item8": "table"     
+            "item2": "cupboard",
+            "item3": "dishwasher",
+            "item4": "freezer",
+            "item5": "fridge",
+            "item6": "kettle",        
+            "item7": "microwave oven",   
+            "item8": "oven",
+            "item9": "sink",
+            "item10": "kitchen table"
         },
         "livingRoom": {
             "title": "living room",
@@ -57,13 +59,15 @@
         "kitchen": {
             "title": "kuchnia",
             "item1": "krzesło",
-            "item2": "zmywarka",
-            "item3": "lodówka",     
-            "item4": "czajnik",
-            "item5": "kuchenka mikrofalowa",
-            "item6": "piekarnik",        
-            "item7": "zlew",   
-            "item8": "stół"       
+            "item2": "szafka",
+            "item3": "zmywarka",     
+            "item4": "zamrażarka",
+            "item5": "lodówka",
+            "item6": "czajnik",        
+            "item7": "kuchenka mikrofalowa",   
+            "item8": "piekarnik",
+            "item9": "zlew",
+            "item10": "stół"
         },
         "livingRoom": {
             "title": "pokój dzienny",
