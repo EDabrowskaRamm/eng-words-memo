@@ -54,20 +54,17 @@
           password: this.password
         }
 
-        // error
-        if (this.$store.dispatch('registerError')) {
-          this.loginError = true
-        }
-
         this.$store.dispatch('login', {
           email: newUser.email,
           password: newUser.password
         })
-
-        // if (this.store.email !== localStorage.getItem('email', newUser.email)) {
-        //   localStorage.setItem('email', newUser.email)
-        //   localStorage.setItem('password', newUser.password)
-        // }
+      }
+    },
+    computed: {
+      errorLogin () {
+        if (this.$store.state.isLoginError) {
+          this.loginError = true
+        }
       }
     }
   }

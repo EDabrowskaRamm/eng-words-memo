@@ -11,7 +11,8 @@ export default new Vuex.Store({
   state: {
     idToken: null,
     userId: null,
-    user: null
+    user: null,
+    isLoginError: false
   },
   mutations: {
     authUser (state, userData) {
@@ -54,11 +55,8 @@ export default new Vuex.Store({
         })
         .catch(err => {
           console.log(err)
-          dispatch('registerError')
+          this.isLoginError = true
         })
-    },
-    registerError () {
-      return true
     },
     login ({ commit, dispatch }, authData) {
       axios.post('/verifyPassword?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
@@ -83,7 +81,7 @@ export default new Vuex.Store({
         })
         .catch(err => {
           console.log(err)
-          dispatch('registerError')
+          this.isLoginError = true
         })
     },
     tryAutoLogin ({ commit }) {

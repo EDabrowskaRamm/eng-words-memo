@@ -69,10 +69,6 @@
           password: this.password
         }
 
-        if (this.$store.dispatch('registerError')) {
-          this.registerError = true
-        }
-
         this.$store.dispatch('register', newUser)
         // localStorage.setItem('userName', newUser.name)
         // localStorage.setItem('email', newUser.email)
@@ -82,6 +78,13 @@
         this.email = ''
         this.password = ''
         this.$v.$reset()
+      }
+    },
+    computed: {
+      errorLogin () {
+        if (this.$store.state.isLoginError) {
+          this.loginError = true
+        }
       }
     }
   }
