@@ -40,8 +40,8 @@
             subCategories: [
               {
                 subTitle: 'Kitchen',
-                learn: '/catHomeKitchen',
-                test: '/url'
+                learn: '/kitchenLearn',
+                test: '/kitchenTest'
               }
               // {
               //   subTitle: 'Living room',

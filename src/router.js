@@ -4,10 +4,11 @@ import VueRouter from 'vue-router'
 import AdminPanel from './components/admin/AdminPanel.vue'
 import Login from './components/login/Login.vue'
 import Register from './components/register/Register.vue'
-import CategoriesPanel from './components/categories/CategoriesPanel.vue'
-import CatHomeKitchen from './components/categories/CategoryHome/CatHomeKitchen.vue'
-
 import UserAccount from './components/userAccount/UserAccount.vue'
+
+import CategoriesPanel from './components/categories/CategoriesPanel.vue'
+import KitchenLearn from './components/categories/CategoryHome/KitchenLearn.vue'
+import KitchenTest from './components/categories/CategoryHome/KitchenTest.vue'
 
 // import store from './store'
 
@@ -17,16 +18,10 @@ const routes = [
   { path: '/admin', component: AdminPanel },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
-  { path: '/categories',
-    component: CategoriesPanel
-  },
-  { path: '/userAccount',
-    component: UserAccount
-  },
-  {
-    path: '/catHomeKitchen',
-    component: CatHomeKitchen
-  }
+  { path: '/categories', component: CategoriesPanel },
+  { path: '/userAccount', component: UserAccount },
+  { path: '/kitchenLearn', component: KitchenLearn },
+  { path: '/kitchenTest', component: KitchenTest }
 
 ]
 
