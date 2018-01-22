@@ -1,14 +1,17 @@
 <template lang="html">
   <div class="container kitchen">
     <h3>Test {{ catTitle }}: {{ catSubtitle }} </h3>
-    <p v-if="scored">You got {{ score }} / 10</p>
     <div class="wrapper">
       <img src="../../../assets/kitchen.jpg" class="img-fluid" alt="kitchen"/>
       <span :class="`${item.replace(/ +/g, '')}`" v-for="(item, index) in kitchenEN">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         <input type="text" ref="input" :disabled="disable">
       </span>
+      <div class="scoreDisplay" v-if="scored">
+        <p>You got {{ score }} / 10</p>
+      </div>
     </div>
+    
     <!-- <router-link class="btn btn-outline-secondary" role="button" :to="item.learn"
                   active-class="active"> Learn
     </router-link> -->
@@ -148,6 +151,24 @@
       .kitchentable {
         top: 60%;
         left: 65%;
+      }
+    }
+    .scoreDisplay {
+      background: linear-gradient(
+        rgba(0, 0, 0, 0.8), 
+        rgba(0, 0, 0, 0.8)
+      );
+      text-align: center;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      padding: 1rem 0;
+      p {
+        background-color: transparent;
+        color: white;
+        font-size: 3rem;
+        margin: 0 auto;
       }
     }
   }
