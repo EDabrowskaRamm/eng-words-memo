@@ -18,8 +18,8 @@ const routes = [
   { path: '/admin', component: AdminPanel },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
-  { path: '/categories', component: CategoriesPanel },
   { path: '/userAccount', component: UserAccount },
+  { path: '/categories', component: CategoriesPanel },
   { path: '/kitchenLearn', component: KitchenLearn },
   { path: '/kitchenTest', component: KitchenTest }
 
