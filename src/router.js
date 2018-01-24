@@ -15,7 +15,7 @@ import KitchenTest from './components/categories/CategoryHome/KitchenTest.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: CategoriesPanel },
+  // { path: '/', component: CategoriesPanel },
   { path: '/admin', component: AdminPanel },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
