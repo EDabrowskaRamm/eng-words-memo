@@ -54,7 +54,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../../assets/_variables.scss';
 
   .container {

@@ -26,4 +26,5 @@ const routes = [
 
 ]
 
-export default new VueRouter({mode: 'history', routes, base: process.env.ROUTER_BASE})
+export default new VueRouter({mode: 'history', routes})
+// export default new VueRouter({mode: 'history', routes, base: process.env.ROUTER_BASE})

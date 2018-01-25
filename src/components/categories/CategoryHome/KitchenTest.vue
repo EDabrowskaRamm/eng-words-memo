@@ -12,9 +12,6 @@
       </div>
     </div>
     
-    <!-- <router-link class="btn btn-outline-secondary" role="button" :to="item.learn"
-                  active-class="active"> Learn
-    </router-link> -->
     <button class="btn btn-outline-secondary" role="button" @click="scoreTest">
       Score</button>   
   </div>
@@ -74,12 +71,14 @@
 
         this.disable = true
         this.scored = true
+
+        localStorage.setItem('kitchenTestScore', this.score)
       }
     }
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../../../assets/_variables.scss';
 
   .container.kitchen {

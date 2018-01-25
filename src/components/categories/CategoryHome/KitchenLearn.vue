@@ -75,7 +75,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .container.kitchen {
     h3 {
       text-transform: capitalize;
