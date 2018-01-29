@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="container kitchen">
+  <div class="container bathroom">
     <h3>Test {{ catTitle }}: {{ catSubtitle }} </h3>
     <div class="wrapper">
-      <img src="../../../assets/kitchen.jpg" class="img-fluid" alt="kitchen"/>
-      <span :class="`${item.replace(/ +/g, '')}`" v-for="(item, index) in kitchenEN">
+      <img src="../../../assets/bathroom.jpg" class="img-fluid" alt="bathroom"/>
+      <span :class="`${item.replace(/ +/g, '')}`" v-for="(item, index) in bathroomEN">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         <input type="text" ref="input" :disabled="disable">
       </span>
@@ -24,33 +24,35 @@
     data () {
       return {
         catTitle: home.title,
-        catSubtitle: 'Kitchen',
+        catSubtitle: 'bathroom',
         scored: false,
         score: 0,
         disable: false,
-        kitchenEN: {
-          item1: home.en.kitchen.item1,
-          item2: home.en.kitchen.item2,
-          item3: home.en.kitchen.item3,
-          item4: home.en.kitchen.item4,
-          item5: home.en.kitchen.item5,
-          item6: home.en.kitchen.item6,
-          item7: home.en.kitchen.item7,
-          item8: home.en.kitchen.item8,
-          item9: home.en.kitchen.item9,
-          item10: home.en.kitchen.item10
+        bathroomEN: {
+          item1: home.en.bathroom.item1,
+          item2: home.en.bathroom.item2,
+          item3: home.en.bathroom.item3,
+          item4: home.en.bathroom.item4,
+          item5: home.en.bathroom.item5,
+          item6: home.en.bathroom.item6,
+          item7: home.en.bathroom.item7,
+          item8: home.en.bathroom.item8,
+          item9: home.en.bathroom.item9,
+          item10: home.en.bathroom.item10,
+          item11: home.en.bathroom.item11
         },
-        kitchenPL: {
-          item1: home.pl.kitchen.item1,
-          item2: home.pl.kitchen.item2,
-          item3: home.pl.kitchen.item3,
-          item4: home.pl.kitchen.item4,
-          item5: home.pl.kitchen.item5,
-          item6: home.pl.kitchen.item6,
-          item7: home.pl.kitchen.item7,
-          item8: home.pl.kitchen.item8,
-          item9: home.pl.kitchen.item9,
-          item10: home.pl.kitchen.item10
+        bathroomPL: {
+          item1: home.pl.bathroom.item1,
+          item2: home.pl.bathroom.item2,
+          item3: home.pl.bathroom.item3,
+          item4: home.pl.bathroom.item4,
+          item5: home.pl.bathroom.item5,
+          item6: home.pl.bathroom.item6,
+          item7: home.pl.bathroom.item7,
+          item8: home.pl.bathroom.item8,
+          item9: home.pl.bathroom.item9,
+          item10: home.pl.bathroom.item10,
+          item11: home.pl.bathroom.item11
         }
       }
     },
@@ -60,8 +62,8 @@
         // iterate over all inputs
         for (let i = 0; i < inputArray.length; i++) {
           // iterate over english object and compare input value to object value
-          for (const key in this.kitchenEN) {
-            if (inputArray[i].value === this.kitchenEN[key]) {
+          for (const key in this.bathroomEN) {
+            if (inputArray[i].value === this.bathroomEN[key]) {
               this.score++
               inputArray[i].classList.add('goodAnswer')
               console.log(inputArray[i].classList)
@@ -72,7 +74,7 @@
         this.disable = true
         this.scored = true
 
-        localStorage.setItem('kitchenTestScore', this.score)
+        localStorage.setItem('bathroomTestScore', this.score)
       }
     }
   }
@@ -81,7 +83,7 @@
 <style lang="scss" scoped>
   @import '../../../assets/_variables.scss';
 
-  .container.kitchen {
+  .container.bathroom {
     h3 {
       text-transform: capitalize;
     }
@@ -111,45 +113,49 @@
           border-color: $badAnswerColor;          
         }
       }
-      .chair {
-        top: 75%;
-        left: 65%;
-      }
-      .cupboard {
-        top: 35%;
-        left: 65%;
-      }
-      .dishwasher {
-        top: 55%;
-        left: 70%;
-      }
-      .freezer {
-        top: 71%;
-        left: 15%;
-      }
-      .fridge {
-        top: 31%;
-        left: 15%;
-      }
-      .kettle {
-        top: 50%;
-        left: 25%;
-      }
-      .microwaveoven {
-        top: 31%;
-        left: 36%;
-      }
-      .oven {
-        top: 61%;
-        left: 36%;
-      }
-      .sink {
-        top: 53%;
-        left: 57%;
-      }
-      .kitchentable {
+      .bath {
         top: 60%;
         left: 65%;
+      }
+      .bathroomcabinet {
+        top: 70%;
+        left: 20%;
+      }
+      .mirror {
+        top: 20%;
+        left: 13%;
+      }
+      .rug {
+        top: 84%;
+        left: 45%;
+      }
+      .scale {
+        top: 87%;
+        left: 15%;
+      }
+      .shower {
+        top: 18%;
+        left: 56%;
+      }
+      .soap {
+        top: 52%;
+        left: 10%;
+      }
+      .toilet {
+        top: 61%;
+        left: 46%;
+      }
+      .toothbrush {
+        top: 36%;
+        left: 15%;
+      }
+      .towel {
+        top: 60%;
+        left: 84%;
+      }
+      .washbasin {
+        top: 52%;
+        left: 30%;
       }
     }
     .scoreDisplay {
