@@ -9,6 +9,10 @@ import UserAccount from './components/userAccount/UserAccount.vue'
 import CategoriesPanel from './components/categories/CategoriesPanel.vue'
 import KitchenLearn from './components/categories/CategoryHome/KitchenLearn.vue'
 import KitchenTest from './components/categories/CategoryHome/KitchenTest.vue'
+import BathroomLearn from './components/categories/CategoryHome/BathroomLearn.vue'
+import BathroomTest from './components/categories/CategoryHome/BathroomTest.vue'
+import LRoomLearn from './components/categories/CategoryHome/LRoomLearn.vue'
+import LRoomTest from './components/categories/CategoryHome/LRoomTest.vue'
 
 // import store from './store'
 
@@ -22,7 +26,11 @@ const routes = [
   { path: '/userAccount', component: UserAccount },
   { path: '/categories', component: CategoriesPanel },
   { path: '/kitchenLearn', component: KitchenLearn },
-  { path: '/kitchenTest', component: KitchenTest }
+  { path: '/kitchenTest', component: KitchenTest },
+  { path: '/bathroomLearn', component: BathroomLearn },
+  { path: '/bathroomTest', component: BathroomTest },
+  { path: '/lRoomLearn', component: LRoomLearn },
+  { path: '/lRoomTest', component: LRoomTest }
 
 ]
 

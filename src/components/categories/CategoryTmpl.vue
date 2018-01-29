@@ -42,31 +42,19 @@
                 subTitle: 'Kitchen',
                 learn: '/kitchenLearn',
                 test: '/kitchenTest'
+              },
+              {
+                subTitle: 'Living room',
+                learn: '/lRoomLearn',
+                test: '/lRoomTest'
+              },
+              {
+                subTitle: 'Bathroom',
+                learn: '/bathroomLearn',
+                test: '/bathroomTest'
               }
-              // {
-              //   subTitle: 'Living room',
-              //   learn: 'url',
-              //   test: 'url'
-              // },
-              // {
-              //   subTitle: 'Bathroom',
-              //   learn: 'url',
-              //   test: 'url'
-              // }
             ]
           }
-          // {
-          //   mainTitle: 'Animals',
-          //   subTitles: ['Wild', 'Domestic', 'Farm animals']
-          // },
-          // {
-          //   mainTitle: 'Food',
-          //   subTitles: ['Fruits', 'Vegetables', 'Meals', 'Drinks']
-          // },
-          // {
-          //   mainTitle: 'Other',
-          //   subTitles: ['School', 'Work']
-          // }
         ]
       }
     },
