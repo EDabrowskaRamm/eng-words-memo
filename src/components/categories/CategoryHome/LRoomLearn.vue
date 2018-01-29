@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="container kitchen">
+  <div class="container livingRoom">
     <h3> {{ catTitle }}: {{ catSubtitle }} </h3>
     <div class="wrapper">
-      <img src="../../../assets/kitchen.jpg" class="img-fluid" alt="kitchen"/>
-      <span :class="`${item.replace(/ +/g, '')}`" v-for="(item, index) in kitchenEN">
+      <img src="../../../assets/livingroom.jpg" class="img-fluid" alt="livingRoom"/>
+      <span :class="`${item.replace(/ +/g, '')}`" v-for="(item, index) in livingRoomEN">
         <i class="fa fa-plus-circle" aria-hidden="true" @click="toggleLang(index, $event)"></i>
         <p ref="toggleWord" > {{ item }} </p>
       </span>
@@ -18,30 +18,28 @@
     data () {
       return {
         catTitle: home.title,
-        catSubtitle: 'Kitchen',
-        kitchenEN: {
-          item1: home.en.kitchen.item1,
-          item2: home.en.kitchen.item2,
-          item3: home.en.kitchen.item3,
-          item4: home.en.kitchen.item4,
-          item5: home.en.kitchen.item5,
-          item6: home.en.kitchen.item6,
-          item7: home.en.kitchen.item7,
-          item8: home.en.kitchen.item8,
-          item9: home.en.kitchen.item9,
-          item10: home.en.kitchen.item10
+        catSubtitle: 'livingRoom',
+        livingRoomEN: {
+          item1: home.en.livingRoom.item1,
+          item2: home.en.livingRoom.item2,
+          item3: home.en.livingRoom.item3,
+          item4: home.en.livingRoom.item4,
+          item5: home.en.livingRoom.item5,
+          item6: home.en.livingRoom.item6,
+          item7: home.en.livingRoom.item7,
+          item8: home.en.livingRoom.item8,
+          item9: home.en.livingRoom.item9
         },
-        kitchenPL: {
-          item1: home.pl.kitchen.item1,
-          item2: home.pl.kitchen.item2,
-          item3: home.pl.kitchen.item3,
-          item4: home.pl.kitchen.item4,
-          item5: home.pl.kitchen.item5,
-          item6: home.pl.kitchen.item6,
-          item7: home.pl.kitchen.item7,
-          item8: home.pl.kitchen.item8,
-          item9: home.pl.kitchen.item9,
-          item10: home.pl.kitchen.item10
+        livingRoomPL: {
+          item1: home.pl.livingRoom.item1,
+          item2: home.pl.livingRoom.item2,
+          item3: home.pl.livingRoom.item3,
+          item4: home.pl.livingRoom.item4,
+          item5: home.pl.livingRoom.item5,
+          item6: home.pl.livingRoom.item6,
+          item7: home.pl.livingRoom.item7,
+          item8: home.pl.livingRoom.item8,
+          item9: home.pl.livingRoom.item9
         }
       }
     },
@@ -49,7 +47,7 @@
       toggleLang (id, event) {
         // get item that it clicked
         let clickedItem = event.srcElement.nextElementSibling.innerText
-        let enVal = this.kitchenEN[id]
+        let enVal = this.livingRoomEN[id]
         let idNumber
         let langVal
 
@@ -62,9 +60,9 @@
 
         // toggle language after + click
         if (clickedItem === enVal) {
-          langVal = this.kitchenPL[id]
+          langVal = this.livingRoomPL[id]
         } else {
-          langVal = this.kitchenEN[id]
+          langVal = this.livingRoomEN[id]
         }
 
         // put changed value into html
@@ -76,7 +74,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .container.kitchen {
+  .container.livingRoom {
     h3 {
       text-transform: capitalize;
     }
@@ -95,45 +93,41 @@
         position: absolute;
         min-width: 10%;
       }
-      .chair {
-        top: 75%;
+      .armchair {
+        top: 73%;
         left: 65%;
       }
-      .cupboard {
-        top: 35%;
-        left: 65%;
+      .blanket {
+        top: 68%;
+        left: 41%;
       }
-      .dishwasher {
-        top: 55%;
-        left: 70%;
+      .bookcase {
+        top: 17%;
+        left: 60%;
       }
-      .freezer {
-        top: 71%;
-        left: 15%;
+      .coffeetable {
+        top: 62%;
+        left: 45%;
       }
-      .fridge {
-        top: 31%;
-        left: 15%;
+      .cushion {
+        top: 52%;
+        left: 71%;
       }
-      .kettle {
-        top: 50%;
-        left: 25%;
-      }
-      .microwaveoven {
-        top: 31%;
-        left: 36%;
-      }
-      .oven {
-        top: 61%;
-        left: 36%;
-      }
-      .sink {
+      .stairs {
         top: 53%;
-        left: 57%;
+        left: 2%;
       }
-      .kitchentable {
-        top: 60%;
-        left: 65%;
+      .painting {
+        top: 15%;
+        left: 5%;
+      }
+      .sofa {
+        top: 59%;
+        left: 26%;
+      }
+      .TV {
+        top: 48%;
+        left: 91%;
       }
     }
   }
