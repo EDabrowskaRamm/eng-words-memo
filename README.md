@@ -1,5 +1,8 @@
 # eng-words-memo
 
+Is a simple application for learning English words.<br>
+Click here: https://edabrowskaramm.github.io/eng-words-memo/
+
 > A Vue.js project
 
 ## Build Setup
