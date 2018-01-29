@@ -76,6 +76,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../../../assets/_variables.scss';
+
   .container.kitchen {
     h3 {
       text-transform: capitalize;
@@ -94,6 +96,9 @@
         display: block;
         position: absolute;
         min-width: 10%;
+        i {
+          color: $iconToggleColor;
+        }
       }
       .chair {
         top: 75%;

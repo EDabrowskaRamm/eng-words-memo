@@ -74,6 +74,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../../../assets/_variables.scss';
+
   .container.livingRoom {
     h3 {
       text-transform: capitalize;
@@ -92,6 +94,9 @@
         display: block;
         position: absolute;
         min-width: 10%;
+        i {
+          color: $iconToggleColor;
+        }
       }
       .armchair {
         top: 73%;

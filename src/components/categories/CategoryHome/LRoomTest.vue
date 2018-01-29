@@ -8,7 +8,7 @@
         <input type="text" ref="input" :disabled="disable">
       </span>
       <div class="scoreDisplay" v-if="scored">
-        <p>You got {{ score }} / 10</p>
+        <p>You got {{ score }} / 9</p>
       </div>
     </div>
     
