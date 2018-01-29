@@ -8,7 +8,8 @@
         <input type="text" ref="input" :disabled="disable">
       </span>
       <div class="scoreDisplay" v-if="scored">
-        <p>You got {{ score }} / 9</p>
+        <p v-if="passed">Congratulations! You passed, {{ score }} / 9</p>
+        <p v-else>Try again, {{ score }} / 9</p>
       </div>
     </div>
     
@@ -19,6 +20,7 @@
 
 <script>
   import home from './home.json'
+  import router from '../../../router'
 
   export default {
     data () {
@@ -26,6 +28,7 @@
         catTitle: home.title,
         catSubtitle: 'livingRoom',
         scored: false,
+        passed: false,
         score: 0,
         disable: false,
         livingRoomEN: {
@@ -62,15 +65,22 @@
             if (inputArray[i].value === this.livingRoomEN[key]) {
               this.score++
               inputArray[i].classList.add('goodAnswer')
-              console.log(inputArray[i].classList)
             }
           }
         }
-
+        // set variables
         this.disable = true
         this.scored = true
 
+        if (this.score >= 75 / 100 * 9) {
+          this.passed = true
+        }
+
         localStorage.setItem('livingRoomTestScore', this.score)
+        // automatically change view to categories
+        setTimeout(() => {
+          router.replace('/categories')
+        }, 3000)
       }
     }
   }
@@ -161,7 +171,7 @@
         background-color: transparent;
         color: white;
         font-size: 3rem;
-        margin: 0 auto;
+        margin-top: 21%;
       }
     }
     button {
