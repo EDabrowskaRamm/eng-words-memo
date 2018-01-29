@@ -8,7 +8,8 @@
         <input type="text" ref="input" :disabled="disable">
       </span>
       <div class="scoreDisplay" v-if="scored">
-        <p>You got {{ score }} / 10</p>
+        <p v-if="passed">Congratulations! You passed, {{ score }} / 10</p>
+        <p v-else>Try again, {{ score }} / 10</p>
       </div>
     </div>
     
@@ -19,6 +20,7 @@
 
 <script>
   import home from './home.json'
+  import router from '../../../router'
 
   export default {
     data () {
@@ -26,6 +28,7 @@
         catTitle: home.title,
         catSubtitle: 'Kitchen',
         scored: false,
+        passed: false,
         score: 0,
         disable: false,
         kitchenEN: {
@@ -64,15 +67,24 @@
             if (inputArray[i].value === this.kitchenEN[key]) {
               this.score++
               inputArray[i].classList.add('goodAnswer')
-              console.log(inputArray[i].classList)
             }
           }
         }
-
+        // set variables
         this.disable = true
         this.scored = true
 
+        if (this.score >= 75 / 100 * 10) {
+          this.passed = true
+        }
+
+        // save scores to lockalstorage
         localStorage.setItem('kitchenTestScore', this.score)
+
+        // automatically change view to categories
+        setTimeout(() => {
+          router.replace('/categories')
+        }, 2000)
       }
     }
   }
@@ -145,7 +157,7 @@
       }
       .sink {
         top: 53%;
-        left: 57%;
+        left: 55%;
       }
       .kitchentable {
         top: 60%;
@@ -167,8 +179,12 @@
         background-color: transparent;
         color: white;
         font-size: 3rem;
-        margin: 0 auto;
+        margin-top: 25%;
       }
+    }
+
+    button {
+      margin-top: 1rem;
     }
   }
 

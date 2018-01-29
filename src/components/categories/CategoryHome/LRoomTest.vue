@@ -164,6 +164,9 @@
         margin: 0 auto;
       }
     }
+    button {
+      margin-top: 1rem;
+    }
   }
 
 </style>
