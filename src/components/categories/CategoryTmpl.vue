@@ -13,8 +13,8 @@
         <span class="collapse" :id="catId">
           <div v-for="(item, itemId) in category.subCategories" :key="itemId">
             <div class="card card-body">
-              <p> {{ item.subTitle }} </p>
-              <span>
+              <p><span>{{ item.subTitle }}</span> <span>{{ item.score }} / {{ item.maxscore }}</span></p>
+              <span class="category_links" >
                 <router-link class="btn btn-outline-secondary" role="button" :to="item.learn"
                               active-class="active"> Learn
                 </router-link>
@@ -41,17 +41,23 @@
               {
                 subTitle: 'Kitchen',
                 learn: '/kitchenLearn',
-                test: '/kitchenTest'
+                test: '/kitchenTest',
+                score: 0,
+                maxscore: 10
               },
               {
                 subTitle: 'Living room',
                 learn: '/lRoomLearn',
-                test: '/lRoomTest'
+                test: '/lRoomTest',
+                score: 0,
+                maxscore: 9
               },
               {
                 subTitle: 'Bathroom',
                 learn: '/bathroomLearn',
-                test: '/bathroomTest'
+                test: '/bathroomTest',
+                score: 0,
+                maxscore: 11
               }
             ]
           }
@@ -68,6 +74,11 @@
           collapsedSpan.classList.add('show')
         }
       }
+    },
+    created () {
+      this.categories[0].subCategories[0].score = localStorage.getItem('kitchenTestScore')
+      this.categories[0].subCategories[1].score = localStorage.getItem('livingRoomTestScore')
+      this.categories[0].subCategories[2].score = localStorage.getItem('bathroomTestScore')
     }
   }
 </script>
@@ -82,7 +93,8 @@
       text-align: left;
       padding-top: 1rem;
       p {
-        display: inline-block;
+        display: inline-flex;
+        justify-content: space-between;
         a {
           color: $textColor;
           &:hover, &:focus {
@@ -98,7 +110,12 @@
           border: none;
           background-color: transparent;
           padding: 0;
-          span {
+          p {
+            span {
+              display: inline-flex;
+            }
+          }
+          span.category_links {
             display: flex;
             margin-bottom: 1rem;
             a {
