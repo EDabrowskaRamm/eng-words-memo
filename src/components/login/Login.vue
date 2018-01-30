@@ -32,6 +32,7 @@
   export default {
     data () {
       return {
+        name: '',
         email: '',
         password: '',
         loginError: false
@@ -50,14 +51,18 @@
     methods: {
       login () {
         const newUser = {
+          name: this.name,
           email: this.email,
           password: this.password
         }
 
         this.$store.dispatch('login', {
+          name: newUser.name,
           email: newUser.email,
           password: newUser.password
         })
+
+        console.log('login', newUser)
       }
     },
     computed: {

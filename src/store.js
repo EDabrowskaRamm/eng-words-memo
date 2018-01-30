@@ -12,12 +12,18 @@ export default new Vuex.Store({
     idToken: null,
     userId: null,
     user: null,
-    isLoginError: false
+    isLoginError: false,
+    name: null,
+    password: null,
+    email: null
   },
   mutations: {
     authUser (state, userData) {
       state.idToken = userData.token
       state.userId = userData.userId
+      state.name = userData.name
+      state.password = userData.password
+      state.email = userData.email
     },
     storeUser (state, user) {
       state.user = user
@@ -26,6 +32,8 @@ export default new Vuex.Store({
       // mutation to clear data to log out user
       state.idToken = null
       state.userId = null
+      state.password = null
+      state.email = null
     }
   },
   actions: {
@@ -37,11 +45,13 @@ export default new Vuex.Store({
         returnSecureToken: true
       })
         .then(res => {
-          console.log(res)
           // save data to auth database
           commit('authUser', {
             token: res.data.idToken,
-            userId: res.data.localId
+            userId: res.data.localId,
+            name: res.data.name,
+            password: res.data.password,
+            email: res.data.email
           })
           // save token id to local storage so that user won't be loggedout after browser refresh
           const now = new Date()
@@ -52,6 +62,7 @@ export default new Vuex.Store({
           // save data to firebase
           dispatch('storeUser', authData)
           router.replace('/userAccount')
+          console.log(res)
         })
         .catch(err => {
           console.log(err)
@@ -66,7 +77,7 @@ export default new Vuex.Store({
         returnSecureToken: true
       })
         .then(res => {
-          console.log(res)
+          // console.log(res)
           // save token id to local storage so that user won't be loggedout after browser refresh
           const now = new Date()
           const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
@@ -75,9 +86,13 @@ export default new Vuex.Store({
           localStorage.setItem('userId', res.data.localId)
           commit('authUser', {
             token: res.data.idToken,
-            userId: res.data.localId
+            userId: res.data.localId,
+            name: res.data.name,
+            password: res.data.password,
+            email: res.data.email
           })
           router.replace('/userAccount')
+          console.log(authData)
         })
         .catch(err => {
           console.log(err)
@@ -125,7 +140,8 @@ export default new Vuex.Store({
       // else
       mainAxios.post('/users.json' + '?auth=' + state.idToken, userData)
         .then(res => {
-          console.log(res)
+          console.log(res.data.name)
+          console.log(userData)
         })
         .catch(err => console.log(err))
     },
@@ -135,27 +151,15 @@ export default new Vuex.Store({
         return
       }
       // else
-      mainAxios.get('/users.json' + '?auth=' + state.idToken)
-      .then(res => {
-        const data = res.data
-        const users = []
-
-        for (let key in data) {
-          const user = data[key]
-
-          user.id = key
-
-          users.push(user)
-        }
-
-        // for (let i = 0; i < users.length; i++) {
-        //   console.log(users[i].email)
-        // }
-
-        // tu pobieram tylko przykładowe dane; trzeba ogarnąć, eby pobierane były dane konkretnego usera
-        commit('storeUser', users[0])
+      axios.post('/getAccountInfo?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
+        'idToken': state.idToken
       })
-      .catch(err => console.log(err))
+        .then(res => {
+          console.log('fetch:', userData)
+
+          commit('storeUser', res.data.users[0])
+        })
+        .catch(err => console.log(err))
     }
   },
   getters: {

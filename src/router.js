@@ -14,12 +14,31 @@ import BathroomTest from './components/categories/CategoryHome/BathroomTest.vue'
 import LRoomLearn from './components/categories/CategoryHome/LRoomLearn.vue'
 import LRoomTest from './components/categories/CategoryHome/LRoomTest.vue'
 
-// import store from './store'
+import store from './store'
 
 Vue.use(VueRouter)
 
 const routes = [
-  // { path: '/', component: CategoriesPanel },
+  { path: '/',
+    redirect: '/categories',
+    beforeRouteUpdate (to, from, next) {
+      if (store.state.idToken) {
+        next()
+      } else {
+        next('/login')
+      }
+    }
+  },
+  { path: '*',
+    redirect: '/categories',
+    beforeRouteUpdate (to, from, next) {
+      if (store.state.idToken) {
+        next()
+      } else {
+        next('/login')
+      }
+    }
+  },
   { path: '/admin', component: AdminPanel },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
