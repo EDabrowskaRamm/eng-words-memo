@@ -34,7 +34,7 @@
     methods: {
       saveAccountData () {
         console.log('changed data')
-        console.log(this.$store.getters.user.id)
+        console.log(this.$store.getters.user)
       }
     },
     computed: {
