@@ -4,7 +4,7 @@
       <h3>Register</h3>
       <div class="form-group" :class="{invalid: $v.userName.$error}">
         <i class="fa fa-user" aria-hidden="true"></i>
-        <input class="form-control" aria-describedby="emailHelp" placeholder="User name"
+        <input class="form-control" aria-describedby="nameHelp" placeholder="User name"
                 type="text" id="userName" v-model="userName" @input="$v.userName.$touch()">
         <p v-if="$v.userName.$error" :class="{invalid: $v.userName.$error}">
           User name should have at least {{ $v.userName.$params.minLength.min }} letters

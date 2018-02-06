@@ -172,9 +172,12 @@ export default new Vuex.Store({
             users.push(user)
           }
 
-          console.log('fetch:', data)
-
-          commit('storeUser', users[0])
+          // działa, ale po przeladowaniu wywala false...
+          for (let i = 0; i < users.length; i++) {
+            if (state.email === users[i].email) {
+              commit('storeUser', users[i])
+            }
+          }
         })
         .catch(err => console.log(err))
     }
