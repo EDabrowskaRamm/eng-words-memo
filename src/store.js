@@ -74,7 +74,7 @@ export default new Vuex.Store({
     },
     login ({ commit, dispatch }, authData) {
       axios.post('/verifyPassword?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
-        name: authData.name,
+        userName: authData.name,
         email: authData.email,
         password: authData.password,
         returnSecureToken: true
@@ -172,7 +172,7 @@ export default new Vuex.Store({
             users.push(user)
           }
 
-          // działa, ale po przeladowaniu wywala false...
+          // działa, ale po przeladowaniu wywala false
           for (let i = 0; i < users.length; i++) {
             if (state.email === users[i].email) {
               commit('storeUser', users[i])

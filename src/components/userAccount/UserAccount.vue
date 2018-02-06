@@ -5,7 +5,7 @@
       <div class="form-group">
         <i class="fa fa-user" aria-hidden="true"></i>
         <input class="form-control" aria-describedby="nameHelp" type="text"
-                id="name" v-model="name">
+                id="userName" v-model="userName">
       </div>
       <div class="form-group" >
         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -38,7 +38,7 @@
       }
     },
     computed: {
-      name () {
+      userName () {
         return !this.$store.getters.user ? false : this.$store.getters.user.name
       },
       email () {

@@ -63,7 +63,7 @@
     methods: {
       login () {
         const newUser = {
-          userName: this.name,
+          userName: this.userName,
           email: this.email,
           password: this.password
         }

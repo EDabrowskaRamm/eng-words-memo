@@ -64,15 +64,12 @@
     methods: {
       addUser () {
         const newUser = {
-          name: this.userName,
+          userName: this.userName,
           email: this.email,
           password: this.password
         }
 
         this.$store.dispatch('register', newUser)
-        // localStorage.setItem('userName', newUser.name)
-        // localStorage.setItem('email', newUser.email)
-        // localStorage.setItem('password', newUser.password)
 
         this.userName = ''
         this.email = ''
