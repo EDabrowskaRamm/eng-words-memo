@@ -63,6 +63,9 @@ export default new Vuex.Store({
           dispatch('storeUser', authData)
           router.replace('/userAccount')
           console.log(res)
+          /* podczas register res.data wywala
+            email, expiresIn, idToken, kind, localId, refershToken
+            why?! skąd to!? dlaczego nie ma name ani email */
         })
         .catch(err => {
           console.log(err)
@@ -71,7 +74,7 @@ export default new Vuex.Store({
     },
     login ({ commit, dispatch }, authData) {
       axios.post('/verifyPassword?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
-        name: authData.name,
+        userName: authData.name,
         email: authData.email,
         password: authData.password,
         returnSecureToken: true
@@ -92,7 +95,10 @@ export default new Vuex.Store({
             email: res.data.email
           })
           router.replace('/userAccount')
-          console.log(authData)
+          console.log(authData, res)
+          /* po zalogowaniu authData = newUser z login
+          do response.data doszło puste displayName; skąd to?
+          fetchUser nie pobiera niczego po za email?? */
         })
         .catch(err => {
           console.log(err)
@@ -103,22 +109,22 @@ export default new Vuex.Store({
       const token = localStorage.getItem('token')
       const userId = localStorage.getItem('userId')
       const expirationDate = localStorage.getItem('expirationDate')
-      const now = new Date()
+      // const now = new Date()
 
       if (!token) {
         router.replace('/login')
-        return null
+        return
       }
-
-      if (now >= expirationDate) {
+// nie działa to. if zawsze jest false...
+      if (new Date() >= expirationDate) {
         // if token and date are expired clear localstorage
+
         localStorage.removeItem('token')
         localStorage.removeItem('userId')
         localStorage.removeItem('expirationDate')
         router.replace('/login')
-        return null
+        return
       }
-
       commit('authUser', {
         token: token,
         userId: userId
@@ -141,23 +147,37 @@ export default new Vuex.Store({
       mainAxios.post('/users.json' + '?auth=' + state.idToken, userData)
         .then(res => {
           console.log(res.data.name)
+          // podczas register wywala klucz z fb db
+
           console.log(userData)
+          // podczas register wywala obiekt z kluczami name, email, password
         })
         .catch(err => console.log(err))
     },
-    fetchUser ({ commit, state }, userData) {
+    fetchUser ({ commit, state }) {
       if (!state.idToken) {
         //  if we don't have token
         return
       }
       // else
-      axios.post('/getAccountInfo?key=AIzaSyALHfVfvRmXgkuvAeFJc5cSvyVFWwMcfrQ', {
-        'idToken': state.idToken
-      })
+      mainAxios.get('/users.json' + '?auth=' + state.idToken)
         .then(res => {
-          console.log('fetch:', userData)
+          const data = res.data
+          const users = []
 
-          commit('storeUser', res.data.users[0])
+          for (let key in data) {
+            const user = data[key]
+
+            user.id = key
+            users.push(user)
+          }
+
+          // działa, ale po przeladowaniu wywala false
+          for (let i = 0; i < users.length; i++) {
+            if (state.email === users[i].email) {
+              commit('storeUser', users[i])
+            }
+          }
         })
         .catch(err => console.log(err))
     }

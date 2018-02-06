@@ -2,6 +2,14 @@
   <div class="container">
     <form>
       <h3>Login</h3>
+      <div class="form-group" :class="{invalid: $v.userName.$error}">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <input class="form-control" aria-describedby="nameHelp" placeholder="User name"
+                type="text" id="userName" v-model="userName" @input="$v.userName.$touch()">
+        <p v-if="$v.userName.$error" :class="{invalid: $v.userName.$error}">
+          User name should have at least {{ $v.userName.$params.minLength.min }} letters
+        </p>
+      </div>
       <div class="form-group" :class="{invalid: $v.email.$error}">
         <i class="fa fa-envelope" aria-hidden="true"></i>
         <input class="form-control" aria-describedby="emailHelp" placeholder="Email"
@@ -32,13 +40,17 @@
   export default {
     data () {
       return {
-        name: '',
+        userName: '',
         email: '',
         password: '',
         loginError: false
       }
     },
     validations: {
+      userName: {
+        required,
+        minLength: minLength(5)
+      },
       email: {
         required,
         email
@@ -51,13 +63,13 @@
     methods: {
       login () {
         const newUser = {
-          name: this.name,
+          userName: this.userName,
           email: this.email,
           password: this.password
         }
 
         this.$store.dispatch('login', {
-          name: newUser.name,
+          userName: newUser.name,
           email: newUser.email,
           password: newUser.password
         })
