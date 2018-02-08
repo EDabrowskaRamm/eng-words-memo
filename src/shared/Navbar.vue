@@ -14,24 +14,24 @@
           <ul class="navbar-nav ml-auto">
             <!-- basic not logged view -->
             <li class="nav-item" v-if="!auth">
-              <router-link class="nav-link" to="/register" active-class="active">
-                Register
+              <router-link class="nav-link" to="/register" active-class="active" 
+                            @click.native="closeNav">Register
               </router-link>
             </li>
             <li class="nav-item" v-if="!auth">
-              <router-link class="nav-link" to="/login" active-class="active">
-                Login
+              <router-link class="nav-link" to="/login" active-class="active"
+                            @click.native="closeNav">Login
               </router-link>
             </li>
             <!-- logged in user view -->
             <li class="nav-item" v-if="auth">
-              <router-link class="nav-link" to="/userAccount" active-class="active">
-                Your account
+              <router-link class="nav-link" to="/userAccount" active-class="active"
+                            @click.native="closeNav">Your account
               </router-link>
             </li>
             <li class="nav-item" v-if="auth">
-              <router-link class="nav-link" to="/categories" active-class="active">
-                Categories
+              <router-link class="nav-link" to="/categories" active-class="active"
+                            @click.native="closeNav">Categories
               </router-link>
             </li>
             <li class="nav-item" v-if="auth">
@@ -53,12 +53,11 @@ export default {
   },
   methods: {
     onLogout () {
-      console.log('log out')
       this.$store.dispatch('logout')
-
-      // localStorage.removeItem('userName')
-      // localStorage.removeItem('email')
-      // localStorage.removeItem('password')
+      this.collapse = false
+    },
+    closeNav () {
+      this.collapse = false
     }
   },
   computed: {
