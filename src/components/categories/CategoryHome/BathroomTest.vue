@@ -12,7 +12,7 @@
         <p v-else>Try again, {{ score }} / 11</p>
       </div>
     </div>
-    
+    <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
     <button class="btn btn-outline-secondary" role="button" @click="scoreTest">
       Score</button>   
   </div>
@@ -94,8 +94,13 @@
   @import '../../../assets/_variables.scss';
 
   .container.bathroom {
+    overflow: auto;
     h3 {
       text-transform: capitalize;
+    }
+    a {
+      float: right;
+      clear: both;
     }
     .wrapper {
       position: relative;

@@ -8,6 +8,7 @@
         <p ref="toggleWord" > {{ item }} </p>
       </span>
     </div>
+    <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
   </div>
 </template>
 
@@ -77,8 +78,13 @@
   @import '../../../assets/_variables.scss';
 
   .container.livingRoom {
+    overflow: auto;
     h3 {
       text-transform: capitalize;
+    }
+    a {
+      float: right;
+      clear: both;
     }
     .wrapper {
       position: relative;
