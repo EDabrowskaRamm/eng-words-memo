@@ -9,6 +9,9 @@
       </span>
     </div>
     <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
+    <div class="mobileTranslations">
+      <p v-for="(item, index) in livingRoomPL" ref="translationPl"> {{ item }} </p>
+    </div>
   </div>
 </template>
 
@@ -68,6 +71,26 @@
 
         // put changed value into html
         this.$refs.toggleWord[idNumber].innerText = langVal
+
+        // mobile solutions
+        // show clicked en words
+        if (this.$refs.toggleWord[idNumber].style.display === '') {
+          this.$refs.toggleWord.forEach(element => {
+            element.style.display = ''
+          })
+          this.$refs.toggleWord[idNumber].style.display = 'inline-block'
+        } else {
+          this.$refs.toggleWord[idNumber].style.display = ''
+        }
+        // show translation
+        if (this.$refs.translationPl[idNumber].style.display === '') {
+          this.$refs.translationPl.forEach(element => {
+            element.style.display = ''
+          })
+          this.$refs.translationPl[idNumber].style.display = 'block'
+        } else {
+          this.$refs.translationPl[idNumber].style.display = ''
+        }
       }
     }
 
@@ -95,6 +118,9 @@
         background-color: #c3c3c3;
         display: inline-block;
         padding: 1px 5px;
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
       }
       span {
         display: block;
@@ -133,12 +159,50 @@
         left: 5%;
       }
       .sofa {
-        top: 59%;
+        top: 56%;
         left: 26%;
       }
       .TV {
         top: 48%;
         left: 91%;
+      }
+      @media screen and (max-width: 767px) {
+        .armchair {
+          top: 71%;
+          left: 62%;
+        }
+        .blanket {
+          top: 63%;
+          left: 38%;
+        }
+        .coffeetable {
+          top: 58%;
+          left: 51%;
+        }
+        .cushion {
+          top: 49%;
+          left: 65%;
+        }
+        .stairs {
+          top: 45%;
+        }
+        .sofa {
+          top: 50%;
+          left: 21%;
+        }
+      }
+    }
+    .mobileTranslations {
+      display: none;
+      p {
+        display: none;
+      }
+      @media screen and (max-width: 767px) {
+        display: block;
+        p {
+          font-size: 2em;
+          margin-top: 30px;
+        }
       }
     }
   }

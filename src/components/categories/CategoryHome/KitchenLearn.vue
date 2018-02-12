@@ -172,6 +172,26 @@
         top: 60%;
         left: 65%;
       }
+      @media screen and (max-width: 767px) {
+        .cupboard {
+          top: 31%;
+          left: 57%;
+        }
+        .dishwasher {
+          top: 53%;
+        }
+        .kettle {
+          top: 47%;
+          left: 24%;
+        }
+        .sink {
+          top: 50%;
+          left: 55%;
+        }
+        .kitchentable {
+          left: 56%;
+        }
+      }
     }
     .mobileTranslations {
       display: none;
