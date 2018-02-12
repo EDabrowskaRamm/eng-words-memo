@@ -128,10 +128,8 @@
   @import '../../../assets/_variables.scss';
 
   .container.kitchen {
-    overflow: auto;
     h3 {
       text-transform: capitalize;
-      clear: both;
     }
     .caption {
       text-align: right;

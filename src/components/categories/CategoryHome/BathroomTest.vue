@@ -12,9 +12,15 @@
         <p v-else>Try again, {{ score }} / 11</p>
       </div>
     </div>
-    <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
+    <div class="caption">
+      <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
+    </div>
     <button class="btn btn-outline-secondary" role="button" @click="scoreTest">
-      Score</button>   
+      Score</button>
+    <div class="mobileTranslations">
+      <input v-for="(item, index) in bathroomPL" ref="translationPl" :placeholder="item"
+              :disabled="disable">
+    </div>
   </div>
 </template>
 
@@ -31,6 +37,7 @@
         passed: false,
         score: 0,
         disable: false,
+        windowWidth: 0,
         bathroomEN: {
           item1: home.en.bathroom.item1,
           item2: home.en.bathroom.item2,
@@ -59,32 +66,61 @@
         }
       }
     },
+    mounted () {
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.getWindowWidth)
+        this.getWindowWidth()
+      })
+    },
     methods: {
       scoreTest () {
+        console.log(this.windowWidth)
+        this.windowWidth <= 767 ? this.mobileScoring() : this.scoreTest()
+
+        // set variables
+        this.disable = true
+        this.scored = true
+
+        if (this.score >= 75 / 100 * 10) {
+          this.passed = true
+        }
+
+        // save scores to lockalstorage
+        localStorage.setItem('kitchenTestScore', this.score)
+
+        // automatically change view to categories
+        setTimeout(() => {
+          router.replace('/categories')
+        }, 2000)
+      },
+      desktopScoring () {
         const inputArray = this.$refs.input
         // iterate over all inputs
         for (let i = 0; i < inputArray.length; i++) {
           // iterate over english object and compare input value to object value
-          for (const key in this.bathroomEN) {
-            if (inputArray[i].value === this.bathroomEN[key]) {
+          for (const key in this.kitchenEN) {
+            if (inputArray[i].value === this.kitchenEN[key]) {
               this.score++
               inputArray[i].classList.add('goodAnswer')
             }
           }
         }
-        // set variables
-        this.disable = true
-        this.scored = true
+      },
+      mobileScoring () {
+        const inputArrayMob = this.$refs.translationPl
 
-        if (this.score >= 75 / 100 * 11) {
-          this.passed = true
+        for (let i = 0; i < inputArrayMob.length; i++) {
+          // iterate over english object and compare input value to object value
+          for (const key in this.kitchenEN) {
+            if (inputArrayMob[i].value === this.kitchenEN[key]) {
+              this.score++
+              inputArrayMob[i].classList.add('goodAnswer')
+            }
+          }
         }
-
-        localStorage.setItem('bathroomTestScore', this.score)
-        // automatically change view to categories
-        setTimeout(() => {
-          router.replace('/categories')
-        }, 3000)
+      },
+      getWindowWidth (event) {
+        this.windowWidth = document.documentElement.clientWidth
       }
     }
   }
@@ -94,13 +130,11 @@
   @import '../../../assets/_variables.scss';
 
   .container.bathroom {
-    overflow: auto;
     h3 {
       text-transform: capitalize;
     }
-    a {
-      float: right;
-      clear: both;
+    .caption {
+      text-align: right;
     }
     .wrapper {
       position: relative;
@@ -116,16 +150,14 @@
         display: block;
         position: absolute;
         min-width: 10%;
+        i {
+          color: $iconToggleColor;
+        }
         input {
           width: 130px;
-        }
-        .goodAnswer {
-          background-color: $vueColor;
-          border-color: $vueColor;          
-        }
-        .badAnswer {
-          background-color: $badAnswerColor;
-          border-color: $badAnswerColor;          
+          @media screen and (max-width: 767px) {
+            display: none;
+          }
         }
       }
       .bath {
@@ -172,6 +204,27 @@
         top: 52%;
         left: 30%;
       }
+      @media screen and (max-width: 767px) {
+        .bath {
+          top: 59%;
+        }
+        .scale {
+          top: 83%;
+        }
+        .soap {
+          left: 8%;
+        }
+        .toothbrush {
+          left: 11%;
+        }
+        .towel {
+          top: 60%;
+          left: 85%;
+        }
+        .washbasin {
+          left: 24%;
+        }
+      }
     }
     .scoreDisplay {
       background: linear-gradient(
@@ -193,6 +246,27 @@
     }
     button {
       margin-top: 1rem;
+    }
+    .mobileTranslations {
+      display: none;
+      @media screen and (max-width: 767px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        input {
+          display: flex;
+          margin-top: 1rem;
+          width: auto;
+        }
+      }
+    }
+    .goodAnswer {
+      background-color: $vueColor;
+      border-color: $vueColor;          
+    }
+    .badAnswer {
+      background-color: $badAnswerColor;
+      border-color: $badAnswerColor;          
     }
   }
 
