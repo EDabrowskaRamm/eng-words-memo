@@ -9,6 +9,9 @@
       </span>
     </div>
     <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
+    <div class="mobileTranslations">
+      <p v-for="(item, index) in kitchenPL" ref="translationPl"> {{ item }} </p>
+    </div>
   </div>
 </template>
 
@@ -70,6 +73,26 @@
 
         // put changed value into html
         this.$refs.toggleWord[idNumber].innerText = langVal
+
+        // mobile solutions
+        // show clicked en words
+        if (this.$refs.toggleWord[idNumber].style.display === '') {
+          this.$refs.toggleWord.forEach(element => {
+            element.style.display = ''
+          })
+          this.$refs.toggleWord[idNumber].style.display = 'inline-block'
+        } else {
+          this.$refs.toggleWord[idNumber].style.display = ''
+        }
+        // show translation
+        if (this.$refs.translationPl[idNumber].style.display === '') {
+          this.$refs.translationPl.forEach(element => {
+            element.style.display = ''
+          })
+          this.$refs.translationPl[idNumber].style.display = 'block'
+        } else {
+          this.$refs.translationPl[idNumber].style.display = ''
+        }
       }
     }
 
@@ -97,6 +120,9 @@
         background-color: #c3c3c3;
         display: inline-block;
         padding: 1px 5px;
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
       }
       span {
         display: block;
@@ -145,6 +171,19 @@
       .kitchentable {
         top: 60%;
         left: 65%;
+      }
+    }
+    .mobileTranslations {
+      display: none;
+      p {
+        display: none;
+      }
+      @media screen and (max-width: 767px) {
+        display: block;
+        p {
+          font-size: 2em;
+          margin-top: 30px;
+        }
       }
     }
   }
