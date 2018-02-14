@@ -1,7 +1,9 @@
 <template lang="html">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" tag="a" to="/">App</router-link>
+      <router-link class="navbar-brand" tag="a" to="/">
+        <img src="../assets/ukduck.png" alt="logo" class="logo-duck">
+      </router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
               data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
               aria-expanded="false" aria-label="Toggle navigation"
@@ -78,6 +80,16 @@ export default {
       color: $textColor;
       &:hover, &:focus {
         color: $hoverLinkColor;
+      }
+    }
+    .navbar-brand {
+      .logo-duck {
+        height: 50px;
+        transition: 0.70s;
+        &:hover {
+          transition: 0.70s;
+          transform: rotate(360deg);
+        }
       }
     }
     #navbarSupportedContent .nav-link {

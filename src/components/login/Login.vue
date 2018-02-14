@@ -123,6 +123,9 @@
           &:focus, &:active {
             box-shadow: none;
           }
+          &:-webkit-autofill {
+            background-color: white !important;
+          }
         }
         p.invalid {
           color: #dc3545;

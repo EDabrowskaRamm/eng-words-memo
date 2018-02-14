@@ -193,24 +193,28 @@
         left: 89%;
       }
       @media screen and (max-width: 767px) {
-        .bath {
-          top: 59%;
+        .armchair {
+          top: 71%;
+          left: 62%;
         }
-        .scale {
-          top: 83%;
+        .blanket {
+          top: 63%;
+          left: 38%;
         }
-        .soap {
-          left: 8%;
+        .coffeetable {
+          top: 58%;
+          left: 51%;
         }
-        .toothbrush {
-          left: 11%;
+        .cushion {
+          top: 49%;
+          left: 65%;
         }
-        .towel {
-          top: 60%;
-          left: 85%;
+        .stairs {
+          top: 45%;
         }
-        .washbasin {
-          left: 24%;
+        .sofa {
+          top: 50%;
+          left: 21%;
         }
       }
     }
