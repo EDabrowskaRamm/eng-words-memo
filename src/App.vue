@@ -1,7 +1,7 @@
 <template>
   <div id="app">
+    <Navbar/>
     <div class="container">
-      <Navbar/>
       <router-view></router-view>
     </div>
   </div>
@@ -42,6 +42,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   min-height: 100vh;
+  p, a, h3, input, button {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    font-weight: 600;
+  }
+  background-color: $appColor;
+  padding-bottom: 20px;
 }
 
 </style>

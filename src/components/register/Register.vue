@@ -26,7 +26,7 @@
           Password should have at least {{ $v.password.$params.minLength.min }} characters
         </p>
       </div>
-      <button type="submit" name="button" class="btn btn-outline-success"
+      <button type="submit" name="button" class="btn btn-outline-save"
               :disabled="$v.$invalid" @click.prevent="addUser">
         Create account
       </button>
@@ -134,13 +134,14 @@
       button {
         align-self: flex-end;
       }
-      .btn-outline-success {
-        color: $vueColor;
-        border-color: $vueColor;
+      .btn-outline-save {
+        color: $saveBtn;
+        border-color: $saveBtn;
+        background-color: transparent;
         &:hover, &:focus, &:active {
           color: #fff;
-          border-color: $vueColor;
-          background-color: $vueColor;
+          border-color: $saveBtn;
+          background-color: $saveBtn;
         }
       }
       p.invalid {

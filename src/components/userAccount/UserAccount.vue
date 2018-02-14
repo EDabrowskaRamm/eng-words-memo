@@ -17,7 +17,7 @@
         <input class="form-control" aria-describedby="passwordInput" type="password"
                 id="password" v-model="password">
       </div>
-      <button type="submit" name="button" class="btn btn-outline-success"
+      <button type="submit" name="button" class="btn btn-outline-save"
               @click.prevent="saveAccountData">Save account
       </button>
     </form>
@@ -101,13 +101,14 @@
       button {
         align-self: flex-end;
       }
-      .btn-outline-success {
-        color: $vueColor;
-        border-color: $vueColor;
+      .btn-outline-save {
+        color: $saveBtn;
+        border-color: $saveBtn;
+        background-color: transparent;
         &:hover, &:focus, &:active {
           color: #fff;
-          border-color: $vueColor;
-          background-color: $vueColor;
+          border-color: $saveBtn;
+          background-color: $saveBtn;
         }
       }
       p.invalid {

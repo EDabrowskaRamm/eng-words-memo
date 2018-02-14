@@ -16,5 +16,7 @@
 </script>
 
 <style lang="scss" scoped>
+  .container.categories {
 
+  }
 </style>

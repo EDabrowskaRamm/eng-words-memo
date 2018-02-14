@@ -108,6 +108,7 @@
     a {
       float: right;
       clear: both;
+      color: $textColor;
     }
     .wrapper {
       position: relative;
@@ -115,7 +116,7 @@
         padding: 1rem 0;
       }
       p {
-        background-color: #c3c3c3;
+        background-color: $appColor;
         display: inline-block;
         padding: 1px 5px;
         @media screen and (max-width: 767px) {

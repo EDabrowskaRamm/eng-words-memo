@@ -15,10 +15,10 @@
             <div class="card card-body">
               <p><span>{{ item.subTitle }}</span> <span>{{ item.score }} / {{ item.maxscore }}</span></p>
               <span class="category_links" >
-                <router-link class="btn btn-outline-secondary" role="button" :to="item.learn"
+                <router-link class="btn btn-outline-learn" role="button" :to="item.learn"
                               active-class="active"> Learn
                 </router-link>
-                <router-link class="btn btn-outline-dark" role="button" :to="item.test"
+                <router-link class="btn btn-outline-test" role="button" :to="item.test"
                               active-class="active"> Test
                 </router-link>
               </span>
@@ -121,9 +121,22 @@
             a {
               flex-grow: 1;
             }
-            .btn-outline-dark {
-              margin-left: 10px;
+            .btn-outline-learn {
+              background-color: transparent;
+              border-color: $learnBtn;
+              color: $textColor;
               &:hover {
+                background-color: $learnBtn;
+                color: white;
+              }
+            }
+            .btn-outline-test {
+              margin-left: 10px;
+              background-color: transparent;
+              border-color: $testBtn;
+              color: $textColor;
+              &:hover {
+                background-color: $testBtn;
                 color: white;
               }
             }

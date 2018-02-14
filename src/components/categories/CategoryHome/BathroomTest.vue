@@ -15,7 +15,7 @@
     <div class="caption">
       <a href="https://unsplash.com/" target="_blank">fot. Unsplash</a>
     </div>
-    <button class="btn btn-outline-secondary" role="button" @click="scoreTest">
+    <button class="btn btn-outline-save" role="button" @click="scoreTest">
       Score</button>
     <div class="mobileTranslations">
       <input v-for="(item, index) in bathroomPL" ref="translationPl" :placeholder="item"
@@ -135,6 +135,9 @@
     }
     .caption {
       text-align: right;
+      a {
+        color: $textColor;
+      }
     }
     .wrapper {
       position: relative;
@@ -247,6 +250,16 @@
     button {
       margin-top: 1rem;
     }
+    .btn-outline-save {
+      color: $saveBtn;
+      border-color: $saveBtn;
+      background-color: transparent;
+      &:hover, &:focus, &:active {
+        color: #fff;
+        border-color: $saveBtn;
+        background-color: $saveBtn;
+      }
+    }
     .mobileTranslations {
       display: none;
       @media screen and (max-width: 767px) {
@@ -257,16 +270,20 @@
           display: flex;
           margin-top: 1rem;
           width: auto;
+          border: none;
+          background-color: transparent;
+          padding-left: 5px;
+          border-bottom: 1px solid $textColor;
+          &:focus, &:hover, &:active {
+            outline: none;
+            background-color: $translationInput;
+          }
         }
       }
     }
     .goodAnswer {
-      background-color: $vueColor;
-      border-color: $vueColor;          
-    }
-    .badAnswer {
-      background-color: $badAnswerColor;
-      border-color: $badAnswerColor;          
+      background-color: $goodAnswer;
+      border-color: $goodAnswer;          
     }
   }
 

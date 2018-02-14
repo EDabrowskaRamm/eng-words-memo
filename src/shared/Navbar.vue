@@ -75,10 +75,11 @@ export default {
   @import '../assets/_variables.scss';
 
   nav {
-    background-color: transparent;
+    background-color: $navColor;
+    margin-bottom: 2rem;
     .container > a.navbar-brand {
       color: $textColor;
-      &:hover, &:focus {
+      &:hover, &:focus, &:active {
         color: $hoverLinkColor;
       }
     }
@@ -94,7 +95,7 @@ export default {
     }
     #navbarSupportedContent .nav-link {
       color: $textColor;
-      &:hover, &:focus {
+      &:hover, &:focus, &:active {
         color: $hoverLinkColor;
       }
     }
